@@ -25,7 +25,7 @@ public final class CleanUtils {
      * @return {@code true}: 清除成功<br>{@code false}: 清除失败
      */
     public static boolean cleanInternalCache() {
-        return FileUtils.deleteFilesInDir(Library.getmContext().getCacheDir());
+        return FileUtils.deleteFilesInDir(Library.INSTANCE.getmContext().getCacheDir());
     }
 
     /**
@@ -35,7 +35,7 @@ public final class CleanUtils {
      * @return {@code true}: 清除成功<br>{@code false}: 清除失败
      */
     public static boolean cleanInternalFiles() {
-        return FileUtils.deleteFilesInDir(Library.getmContext().getFilesDir());
+        return FileUtils.deleteFilesInDir(Library.INSTANCE.getmContext().getFilesDir());
     }
 
     /**
@@ -45,7 +45,7 @@ public final class CleanUtils {
      * @return {@code true}: 清除成功<br>{@code false}: 清除失败
      */
     public static boolean cleanInternalDbs() {
-        return FileUtils.deleteFilesInDir(Library.getmContext().getFilesDir().getParent() + File.separator + "databases");
+        return FileUtils.deleteFilesInDir(Library.INSTANCE.getmContext().getFilesDir().getParent() + File.separator + "databases");
     }
 
     /**
@@ -56,7 +56,7 @@ public final class CleanUtils {
      * @return {@code true}: 清除成功<br>{@code false}: 清除失败
      */
     public static boolean cleanInternalDbByName( String dbName) {
-        return Library.getmContext().deleteDatabase(dbName);
+        return Library.INSTANCE.getmContext().deleteDatabase(dbName);
     }
 
     /**
@@ -66,7 +66,7 @@ public final class CleanUtils {
      * @return {@code true}: 清除成功<br>{@code false}: 清除失败
      */
     public static boolean cleanInternalSP() {
-        return FileUtils.deleteFilesInDir(Library.getmContext().getFilesDir().getParent() + File.separator + "shared_prefs");
+        return FileUtils.deleteFilesInDir(Library.INSTANCE.getmContext().getFilesDir().getParent() + File.separator + "shared_prefs");
     }
 
     /**
@@ -76,7 +76,7 @@ public final class CleanUtils {
      * @return {@code true}: 清除成功<br>{@code false}: 清除失败
      */
     public static boolean cleanExternalCache() {
-        return SDCardUtils.isSDCardEnable() && FileUtils.deleteFilesInDir(Library.getmContext().getExternalCacheDir());
+        return SDCardUtils.isSDCardEnable() && FileUtils.deleteFilesInDir(Library.INSTANCE.getmContext().getExternalCacheDir());
     }
 
     /**

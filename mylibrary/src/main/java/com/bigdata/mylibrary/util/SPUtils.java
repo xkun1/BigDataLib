@@ -29,7 +29,7 @@ public class SPUtils {
      * @param spName spName
      */
     public SPUtils(String spName) {
-        sp = Library.getmContext().getSharedPreferences(spName, Context.MODE_PRIVATE);
+        sp = Library.INSTANCE.getmContext().getSharedPreferences(spName, Context.MODE_PRIVATE);
         editor = sp.edit();
         editor.apply();
     }

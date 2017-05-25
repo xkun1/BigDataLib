@@ -26,7 +26,7 @@ public final class ToastUtils {
     private static Toast sToast;
     private static int gravity = Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM;
     private static int xOffset = 0;
-    private static int yOffset = (int) (64 * Library.getmContext().getResources().getDisplayMetrics().density + 0.5);
+    private static int yOffset = (int) (64 * Library.INSTANCE.getmContext().getResources().getDisplayMetrics().density + 0.5);
     @SuppressLint("StaticFieldLeak")
     private static View customView;
     private static Handler sHandler = new Handler(Looper.getMainLooper());
@@ -54,7 +54,7 @@ public final class ToastUtils {
      * @param layoutId 视图
      */
     public static void setView(@LayoutRes int layoutId) {
-        LayoutInflater inflate = (LayoutInflater) Library.getmContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflate = (LayoutInflater) Library.INSTANCE.getmContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         ToastUtils.customView = inflate.inflate(layoutId, null);
     }
 
@@ -277,7 +277,7 @@ public final class ToastUtils {
      * @param duration 显示时长
      */
     private static void show(@StringRes int resId, int duration) {
-        show(Library.getmContext().getResources().getText(resId).toString(), duration);
+        show(Library.INSTANCE.getmContext().getResources().getText(resId).toString(), duration);
     }
 
     /**
@@ -288,7 +288,7 @@ public final class ToastUtils {
      * @param args     参数
      */
     private static void show(@StringRes int resId, int duration, Object... args) {
-        show(String.format(Library.getmContext().getResources().getString(resId), args), duration);
+        show(String.format(Library.INSTANCE.getmContext().getResources().getString(resId), args), duration);
     }
 
     /**
@@ -311,11 +311,11 @@ public final class ToastUtils {
     private static void show(CharSequence text, int duration) {
         cancel();
         if (customView != null) {
-            sToast = new Toast(Library.getmContext());
+            sToast = new Toast(Library.INSTANCE.getmContext());
             sToast.setView(customView);
             sToast.setDuration(duration);
         } else {
-            sToast = Toast.makeText(Library.getmContext(), text, duration);
+            sToast = Toast.makeText(Library.INSTANCE.getmContext(), text, duration);
         }
         sToast.setGravity(gravity, xOffset, yOffset);
         sToast.show();

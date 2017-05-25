@@ -64,16 +64,16 @@ public final class CrashUtils
     public boolean init() {
         if (mInitialized) return true;
         if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
-            File baseCache = Library.getmContext().getExternalCacheDir();
+            File baseCache = Library.INSTANCE.getmContext().getExternalCacheDir();
             if (baseCache == null) return false;
             crashDir = baseCache.getPath() + File.separator + "crash" + File.separator;
         } else {
-            File baseCache = Library.getmContext().getCacheDir();
+            File baseCache = Library.INSTANCE.getmContext().getCacheDir();
             if (baseCache == null) return false;
             crashDir = baseCache.getPath() + File.separator + "crash" + File.separator;
         }
         try {
-            PackageInfo pi = Library.getmContext().getPackageManager().getPackageInfo(Library.getmContext().getPackageName(), 0);
+            PackageInfo pi = Library.INSTANCE.getmContext().getPackageManager().getPackageInfo(Library.INSTANCE.getmContext().getPackageName(), 0);
             versionName = pi.versionName;
             versionCode = pi.versionCode;
         } catch (PackageManager.NameNotFoundException e) {

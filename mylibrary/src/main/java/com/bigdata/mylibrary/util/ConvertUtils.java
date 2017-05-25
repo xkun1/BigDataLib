@@ -549,7 +549,7 @@ public final class ConvertUtils {
      * @return px值
      */
     public static int dp2px(float dpValue) {
-        final float scale = Library.getmContext().getResources().getDisplayMetrics().density;
+        final float scale = Library.INSTANCE.getmContext().getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
     }
 
@@ -560,7 +560,7 @@ public final class ConvertUtils {
      * @return dp值
      */
     public static int px2dp(float pxValue) {
-        final float scale = Library.getmContext().getResources().getDisplayMetrics().density;
+        final float scale = Library.INSTANCE.getmContext().getResources().getDisplayMetrics().density;
         return (int) (pxValue / scale + 0.5f);
     }
 
@@ -571,7 +571,7 @@ public final class ConvertUtils {
      * @return px值
      */
     public static int sp2px(float spValue) {
-        final float fontScale = Library.getmContext().getResources().getDisplayMetrics().scaledDensity;
+        final float fontScale = Library.INSTANCE.getmContext().getResources().getDisplayMetrics().scaledDensity;
         return (int) (spValue * fontScale + 0.5f);
     }
 
@@ -582,7 +582,7 @@ public final class ConvertUtils {
      * @return sp值
      */
     public static int px2sp(float pxValue) {
-        final float fontScale = Library.getmContext().getResources().getDisplayMetrics().scaledDensity;
+        final float fontScale = Library.INSTANCE.getmContext().getResources().getDisplayMetrics().scaledDensity;
         return (int) (pxValue / fontScale + 0.5f);
     }
 

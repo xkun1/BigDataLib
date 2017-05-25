@@ -45,8 +45,8 @@ public class RetroFactory {
     }
 
     private RetroFactory() {
-        appContext = Library.getmContext();
-        baseUrl = Library.getBaseurl();
+        appContext = Library.INSTANCE.getmContext();
+        baseUrl = Library.INSTANCE.getBaseurl();
         if (appContext != null && baseUrl != null) {
             createNetworkConfig();
         } else {

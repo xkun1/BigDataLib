@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_camera"
+            android:title="NET_LIB" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:title="WebView_lib" />
+        <item
+            android:id="@+id/nav_slideshow"
+            android:title="Orcode" />
+        <item
+            android:id="@+id/nav_manage"
+            android:title="Set_OrCode" />
+    </group>
+
+    <item android:title="grroup">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:title="联系人Listview" />
+            <item
+                android:id="@+id/nav_send"
+                android:title="图表" />
+        </menu>
+    </item>
+
+</menu>

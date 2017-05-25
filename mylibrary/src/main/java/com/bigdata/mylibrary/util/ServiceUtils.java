@@ -32,7 +32,7 @@ public final class ServiceUtils {
      * @return 服务名集合
      */
     public static Set getAllRunningService() {
-        ActivityManager activityManager = (ActivityManager) Library.getmContext().getSystemService(Context.ACTIVITY_SERVICE);
+        ActivityManager activityManager = (ActivityManager) Library.INSTANCE.getmContext().getSystemService(Context.ACTIVITY_SERVICE);
         List<RunningServiceInfo> info = activityManager.getRunningServices(0x7FFFFFFF);
         Set<String> names = new HashSet<>();
         if (info == null || info.size() == 0) return null;
@@ -61,8 +61,8 @@ public final class ServiceUtils {
      * @param cls 服务类
      */
     public static void startService(Class<?> cls) {
-        Intent intent = new Intent(Library.getmContext(), cls);
-        Library.getmContext().startService(intent);
+        Intent intent = new Intent(Library.INSTANCE.getmContext(), cls);
+        Library.INSTANCE.getmContext().startService(intent);
     }
 
     /**
@@ -87,8 +87,8 @@ public final class ServiceUtils {
      * @return {@code true}: 停止成功<br>{@code false}: 停止失败
      */
     public static boolean stopService(Class<?> cls) {
-        Intent intent = new Intent(Library.getmContext(), cls);
-        return Library.getmContext().stopService(intent);
+        Intent intent = new Intent(Library.INSTANCE.getmContext(), cls);
+        return Library.INSTANCE.getmContext().stopService(intent);
     }
 
     /**
@@ -130,8 +130,8 @@ public final class ServiceUtils {
      *              </ul>
      */
     public static void bindService(Class<?> cls, ServiceConnection conn, int flags) {
-        Intent intent = new Intent(Library.getmContext(), cls);
-        Library.getmContext().bindService(intent, conn, flags);
+        Intent intent = new Intent(Library.INSTANCE.getmContext(), cls);
+        Library.INSTANCE.getmContext().bindService(intent, conn, flags);
     }
 
     /**
@@ -140,7 +140,7 @@ public final class ServiceUtils {
      * @param conn 服务连接对象
      */
     public static void unbindService(ServiceConnection conn) {
-        Library.getmContext().unbindService(conn);
+        Library.INSTANCE.getmContext().unbindService(conn);
     }
 
     /**
@@ -150,7 +150,7 @@ public final class ServiceUtils {
      * @return {@code true}: 是<br>{@code false}: 否
      */
     public static boolean isServiceRunning(String className) {
-        ActivityManager activityManager = (ActivityManager) Library.getmContext().getSystemService(Context.ACTIVITY_SERVICE);
+        ActivityManager activityManager = (ActivityManager) Library.INSTANCE.getmContext().getSystemService(Context.ACTIVITY_SERVICE);
         List<RunningServiceInfo> info = activityManager.getRunningServices(0x7FFFFFFF);
         if (info == null || info.size() == 0) return false;
         for (RunningServiceInfo aInfo : info) {
