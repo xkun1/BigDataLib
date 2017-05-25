@@ -1,4 +1,6 @@
 ### bigdataLIb通用库
+### 展示
+![](https://github.com/xkun1/BigDataLib/blob/master/mylibrary/src/main/java/image/image05.png)
 #### 1.介绍
 ###### bigdataLib通用库是一款快速开发androidAPP打造的通用库，这款库包含四大项目：网络请求库，图片加载库，常用工具库，UI常用库，现在处于第一版，UI常用库没有很完善。
 #### 2.lib目录介绍
