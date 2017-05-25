@@ -1,0 +1,82 @@
+/*内容模块*/
+.module
+{
+    margin: 0px;
+    padding: 0px 10px 10px 10px;
+	background-image:url(../images/jiange.png); background-position:bottom center; background-repeat: repeat-x;
+}
+#moduletemplate
+{
+    display: none;
+}
+.module .category
+{
+    font-size: 16px;
+    line-height: 33px;
+    height: 33px;
+    color: #0083d6;
+    font-weight: bold;
+
+    padding:0 0 3px 0px;
+    margin:5px 0 0 0;
+    border-bottom:#eee solid 1px
+}
+.module .content
+{
+    color: #2f2f2f;
+    font-size: 16px;
+
+	padding:0 0 10px 0;	
+}
+.jiange
+{    
+    width: 100%;
+	background-color:#CCC;
+	height:10px;	
+}
+.module .content .title
+{
+
+    font-size:16px;
+    line-height: 30px;
+    display: inline-block;
+    color: #2f2f2f;
+    font-weight: bold;
+}
+.module .header{
+    font-weight: bold;
+    /*color: #0055b7;*/
+    font-size: 16px;
+	border-bottom: 0px solid #e6e6e6;
+}
+.module .content .summary
+{
+    font-size: 16px;
+    line-height: 22px;
+    display: inline-block;
+    padding-top:10px;
+}
+
+
+
+
+
+
+
+
+
+.module .content .footer
+{
+    font-size: 16px;
+    color: #666;
+    line-height: 30px;
+}
+.module .content .footer .date
+{
+    font-size: 10px;
+}
+.ref
+{
+    font-size: 12px;
+    color: #999;
+}

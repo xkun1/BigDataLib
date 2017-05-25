@@ -1,0 +1,84 @@
+#main
+{
+    margin-top: 35px;
+}
+
+#header {
+    text-align: center;
+}
+
+#main .navigation
+{
+    padding: 10px 0 0 4px;
+    text-align: center;
+}
+
+#main .navigation a
+{
+    display: inline-block;
+    margin: 0 1px 5px 0;
+    width: 144px;
+    height: 41px;
+    line-height: 40px;
+    font-size: 16px;
+    text-decoration: none;
+    color: white;
+    padding-top: 80px;
+}
+
+#main .navigation_2
+{
+    position: relative;
+    height: 360px;
+    width: 310px;
+    margin: auto;
+}
+
+#main .navigation_2 a, #main .navigation_2 a:visited
+{
+    display: block;
+    margin: 2px;
+    float: left;
+    position: absolute;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#main .navigation_3
+{
+    width: 100%;
+    display: -webkit-box;
+    display: -moz-box;
+}
+
+#main .navigation_3 .left, #main .navigation_3 .right
+{
+    width: 50%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    padding: 3px;
+}
+
+#main .navigation_3 div a
+{
+    display: block;
+    text-align: left;
+    text-decoration: none;
+    color: #333333;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    text-indent: 5px;
+}
+
+#main .navigation_3 div .header
+{
+    font-weight: bold;
+    background-color: #c5d9f1;
+    color: #333333;
+}
+

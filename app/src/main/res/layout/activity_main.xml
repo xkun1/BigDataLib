@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.bigdata.bigdatalib.kotlin.MainActivity">
+
+    <com.bigdata.mylibrary.ui.view.BaseLibTopBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        app:leftText="返回"
+        app:rightText="更多"
+        app:titleColor="#f00"
+        app:titleText="BigDataLib"
+        app:titleVisible="true" />
+
+    <Button
+        android:id="@+id/button_net"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Net_Lib" />
+
+    <Button
+        android:id="@+id/button_webView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="WebView_Lib" />
+
+
+    <Button
+        android:id="@+id/button_orCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="OrCode" />
+
+    <Button
+        android:id="@+id/button_setOrCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="SET_ORCODE" />
+
+    <Button
+        android:id="@+id/ListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="联系人ListView" />
+
+    <Button
+        android:id="@+id/button_chart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="图表" />
+
+
+</LinearLayout>

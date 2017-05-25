@@ -1,0 +1,145 @@
+#main
+{
+    margin-top: 0px;
+}
+
+#subcontent
+{
+    margin: auto;
+    text-align: center;
+}
+
+#subcontent .info
+{
+    width: 300px;
+    text-align: center;
+    margin: auto;
+}
+
+.info div
+{
+    display: block;
+    width: 144px;
+    height: 90px;
+    float: left;
+    margin: 2px;
+}
+
+.info div h3
+{
+    margin: 0;
+    padding: 0;
+    display: block;
+    text-indent: 8px;
+    font-size: 14px;
+    height: 25px;
+    line-height: 30px;
+    text-align: left;
+    color: white;
+}
+
+.info .cat01
+{
+    background-color: #fa9221;
+	color:#FFFFFF;
+}
+
+.info .cat02
+{
+    background-color: #20b6f9;
+	color:#FFFFFF;
+}
+
+.info .cat03
+{
+    background-color: #72cb2a;
+	color:#FFFFFF;
+}
+
+.info .cat04
+{
+    background-color: #fb5c90;
+	color:#FFFFFF;
+}
+
+
+.info div span
+{
+    display: inline-block;
+    text-align: left;
+    padding: 4px 8px 4px 8px;
+    font-size: 12px;
+}
+
+#subcontent table
+{
+    width: 100%;
+    margin: 2px;
+    border-collapse: collapse;
+    border: 1px solid #c1c1c1;
+}
+
+#subcontent table tr td
+{
+    height: 30px;
+    line-height: 30px;
+}
+
+#subcontent table tr:nth-child(n+1)
+{
+    font-size: 14px;
+    text-indent: 4px;
+}
+
+#subcontent table tr:nth-child(2n)
+{
+    background: #efefef;
+}
+
+#subcontent table tr:nth-child(1)
+{
+    border-bottom: 1px solid #1d69b3;
+    background-color: #1d69b3;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+}
+
+#subcontent table tr:nth-child(2)
+{
+    font-weight: bold;
+    color: black;
+}
+
+
+#subcontent table tr:nth-child(n+3) td:nth-child(2)
+{
+    color: #0d4eb2;
+}
+
+#subcontent table tr td span
+{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    color: white;
+    font-size: 10px;
+    line-height: 16px;
+}
+
+#subcontent table tr td red
+{
+    font-family:arial;
+    color: red;
+    font-size: 14px;
+}
+
+#subcontent table tr:nth-child(-n+6) td span
+{
+    background-color: #c63910;
+}
+
+#subcontent table tr:nth-child(n+6) td span
+{
+    background-color: #6caaee;
+}

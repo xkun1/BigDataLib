@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bootstrap 101 Template</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+</head>
+<body>
+
+	<div class="highchart-container2"></div>
+
+	<table class="highchart"
+		data-graph-container=".highchart-container2" data-graph-type="line">
+		<caption>Column example</caption>
+		<thead>
+			<tr>
+				<th width="100px">Month</th>
+				<th width="100px">Sales</th>
+				<th widht="100px">Benefits</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>January</td>
+				<td>8000</td>
+				<td>2000</td>
+			</tr>
+			<tr>
+				<td>February</td>
+				<td>12000</td>
+				<td>3000</td>
+			</tr>
+			<tr>
+				<td>March</td>
+				<td>18000</td>
+				<td>4000</td>
+			</tr>
+			<tr>
+				<td>April</td>
+				<td>2000</td>
+				<td>-1000</td>
+			</tr>
+			<tr>
+				<td>May</td>
+				<td>500</td>
+				<td>-2500</td>
+			</tr>
+		</tbody>
+	</table>
+	<script src="file:///android_asset/jQuery.js"></script>
+	<script src="file:///android_asset/highcharts.js"></script>
+	<script src="file:///android_asset/jquery.highchartTable.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('table.highchart').highchartTable();
+		});
+	</script>
+</body>
+</html>

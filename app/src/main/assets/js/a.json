@@ -1,0 +1,188 @@
+{
+  "contents": [
+    {
+      "classid": 14,
+      "content": "\u6d66\u53d1\u94f6\u884c600000\u8fd13\u670812\u5bb6\u673a\u6784\u5e73\u5747\u9884\u6d4b2014\u5e74\u6bcf\u80a1\u6536\u76ca2.54\u5143\u3002\r\n\r\n\u589e\u6301\t\u6d66\u53d1\u94f6\u884c(600000)2014\u5e74\u4e00\u5b63\u62a5\u53ca\u4f18\u5148\u80a1\u53d1\u884c\u9884\u6848\u70b9\u8bc4\uff1a\u4f4e\u57fa\u6570\u4e0b\u5b9e\u73b0\u9ad8\u589e\u957f \u4f18\u5148\u80a1\u5f62\u6210\u5b9e\u8d28\u5229\u597d\n2014-04-30  \u4e2d\u4fe1\u8bc1\u5238\n\u63a8\u8350\t\u6d66\u53d1\u94f6\u884c(600000)\u7ecf\u8425\u6218\u7565\u6e05\u6670 \u4f30\u503c\u5177\u5907\u4f18\u52bf\n2014-04-29  \u957f\u6c5f\u8bc1\u5238\n"
+    },
+    {
+      "classid": 16,
+      "content": "\u4e3b\u8981\u80a1\u4e1c\t\r\n\u63a7\u80a1\u80a1\u4e1c\uff1a  \u4e0a\u6d77\u56fd\u9645\u96c6\u56e2\u6709\u9650\u516c\u53f8(\u8054\u5e2d\u80a1\u4e1c\uff1a\u4e0a\u6d77\u56fd\u9645\u4fe1\u6258\u6709\u9650\u516c\u53f8\u3001\u4e0a\u6d77\u56fd\u946b\u6295\u8d44\u53d1\u5c55\u6709\u9650\u516c\u53f8)\uff0816.93%\uff09\r\n\u5b9e\u9645\u63a7\u5236\u4eba\uff1a\u4e0a\u6d77\u5e02\u56fd\u6709\u8d44\u4ea7\u76d1\u7763\u7ba1\u7406\u59d4\u5458\u4f1a\uff08100.00%\uff09\r\n\r\n"
+    },
+    {
+      "classid": 19,
+      "content": " \u516c\u53f8\u6982\u51b5\r\n\u516c\u53f8\u5168\u79f0\t\u4e0a\u6d77\u6d66\u4e1c\u53d1\u5c55\u94f6\u884c\u80a1\u4efd\u6709\u9650\u516c\u53f8\r\n\u6210\u7acb\u65e5\u671f\t1992-10-19\r\n\u4e0a\u5e02\u65e5\u671f\t1999-11-10\r\n\u6240\u5c5e\u884c\u4e1a\t\u91d1\u878d\u3001\u4fdd\u9669\u4e1a\r\n\u6982\u5ff5\u677f\u5757\t\u878d\u8d44\u878d\u5238\u6807\u7684,\u4e0a\u6d77\u81ea\u8d38\u533a,\u4fe1\u6258\u91cd\u4ed3,\u6d66\u4e1c\u65b0\u533a\r\n\u6240\u5c5e\u6307\u6570\t\u4e0a\u8bc150,\u4e0a\u8bc1\u8d85\u5927\u76d8,\u4e0a\u8bc1180\r\n\u6ce8\u518c\u8d44\u672c\uff08\u4e07\u5143\uff09\t1865347.14\r\n\u516c\u53f8\u89c4\u6a21\uff08\u4eba\uff09\t36498\r\n\u529e\u516c\u5730\u5740\t\u4e0a\u6d77\u5e02\u4e2d\u5c71\u4e1c\u4e00\u8def12\u53f7\t\r\n"
+    },
+    {
+      "classid": 15,
+      "content": "\u26052014-04-29 \u516c\u53f8\u5927\u5355\u8d44\u91d1\u51c0\u6d41\u5165-3227.69\u4e07\u5143,\u8fd15\u671f\u5927\u5355\u8d44\u91d1\u51c0\u6d41\u5165887.63\u4e07\u5143\r\n\u26052014-04-30 \u516c\u53f8\u878d\u8d44\u4f59\u989d770478.41\u4e07\u5143,\u878d\u8d44\u4e70\u516533073.74\u4e07\u5143,\u878d\u5238\u4f59\u989d582.30\u4e07\u80a1,\u878d\u5238\u5356\u51fa720.21\u4e07\u80a1\r\n"
+    }
+  ],
+  "classes": [
+    {
+      "id": "1",
+      "caption": "\u6982\u51b5",
+      "pid": "0"
+    },
+    {
+      "id": "2",
+      "caption": "\u52a8\u6001",
+      "pid": "0"
+    },
+    {
+      "id": "3",
+      "caption": "\u8bc4\u7ea7",
+      "pid": "0"
+    },
+    {
+      "id": "4",
+      "caption": "\u4e3b\u529b",
+      "pid": "0"
+    },
+    {
+      "id": "5",
+      "caption": "\u7ecf\u8425",
+      "pid": "0"
+    },
+    {
+      "id": "11",
+      "caption": "\u63d0\u793a",
+      "pid": "1"
+    },
+    {
+      "id": "12",
+      "caption": "\u516c\u544a",
+      "pid": "1",
+      "on_menu": "false"
+    },
+    {
+      "id": "13",
+      "caption": "\u62a5\u9053",
+      "pid": "1",
+      "on_menu": "false"
+    },
+    {
+      "id": "14",
+      "caption": "\u8bc4\u7ea7",
+      "pid": "1"
+    },
+    {
+      "id": "15",
+      "caption": "\u4e3b\u529b",
+      "pid": "1"
+    },
+    {
+      "id": "16",
+      "caption": "\u80a1\u4e1c",
+      "pid": "1",
+      "on_menu": "false"
+    },
+    {
+      "id": "17",
+      "caption": "\u4e3b\u8425",
+      "pid": "1"
+    },
+    {
+      "id": "18",
+      "caption": "\u4e1a\u7ee9",
+      "pid": "1"
+    },
+    {
+      "id": "19",
+      "caption": "\u6982\u51b5",
+      "pid": "1",
+      "on_menu": "false"
+    },
+    {
+      "id": "21",
+      "caption": "\u516c\u544a",
+      "pid": "2"
+    },
+    {
+      "id": "22",
+      "caption": "\u65b0\u95fb",
+      "pid": "2"
+    },
+    {
+      "id": "31",
+      "caption": "\u8bc4\u7ea7",
+      "pid": "3"
+    },
+    {
+      "id": "32",
+      "caption": "\u4f30\u503c",
+      "pid": "3"
+    },
+    {
+      "id": "33",
+      "caption": "\u9884\u6d4b",
+      "pid": "3"
+    },
+    {
+      "id": "34",
+      "caption": "\u7814\u62a5",
+      "pid": "3"
+    },
+    {
+      "id": "41",
+      "caption": "\u5927\u5355",
+      "pid": "4"
+    },
+    {
+      "id": "42",
+      "caption": "\u9ad8\u7ba1",
+      "pid": "4"
+    },
+    {
+      "id": "43",
+      "caption": "\u4e24\u878d",
+      "pid": "4"
+    },
+    {
+      "id": "44",
+      "caption": "\u5927\u5b97",
+      "pid": "4",
+      "on_menu": "false"
+    },
+    {
+      "id": "45",
+      "caption": "\u5f02\u52a8",
+      "pid": "4"
+    },
+    {
+      "id": "46",
+      "caption": "\u80a1\u4e1c\u6237\u6570",
+      "pid": "4",
+      "on_menu": "false"
+    },
+    {
+      "id": "47",
+      "caption": "\u80a1\u4e1c",
+      "pid": "4"
+    },
+    {
+      "id": "51",
+      "caption": "\u8d22\u52a1",
+      "pid": "5"
+    },
+    {
+      "id": "52",
+      "caption": "\u4e3b\u8425",
+      "pid": "5"
+    },
+    {
+      "id": "53",
+      "caption": "\u5206\u7ea2",
+      "pid": "5"
+    },
+    {
+      "id": "54",
+      "caption": "\u6982\u51b5",
+      "pid": "5"
+    },
+    {
+      "id": "55",
+      "caption": "\u53d1\u884c",
+      "pid": "5"
+    }
+  ]
+}
