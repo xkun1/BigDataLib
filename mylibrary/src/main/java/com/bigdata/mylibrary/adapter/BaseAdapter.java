@@ -73,6 +73,7 @@ public abstract class BaseAdapter<T> extends android.widget.BaseAdapter {
 
         public ViewHoder(View itemView) {
             this.itemView = itemView;
+            mViews=new SparseArray<>();
         }
 
         public <T extends View> T getView(int id) {

@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import com.bigdata.bigdatalib.ListViewActivity
 import com.bigdata.bigdatalib.R
 import com.bigdata.bigdatalib.dialog.OrCodeDigFragment
 import com.bigdata.mylibrary.util.ActivityUtils
@@ -15,7 +16,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
 
-     var orCodeDigFragment: OrCodeDigFragment? = null
+    var orCodeDigFragment: OrCodeDigFragment? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +36,7 @@ class MainActivity : BaseActivity() {
         findViewById(R.id.button_setOrCode).setOnClickListener { orCodeDigFragment!!.show(fragmentManager, "") }
         findViewById(R.id.ListView).setOnClickListener { ActivityUtils.startActivity(this@MainActivity, LinkManActivity::class.java) }
         findViewById(R.id.button_chart).setOnClickListener { ActivityUtils.startActivity(this@MainActivity, ChartActivity::class.java) }
+        findViewById(R.id.button_listview).setOnClickListener { ActivityUtils.startActivity(this@MainActivity, ListViewActivity::class.java) }
 
     }
 
@@ -53,8 +56,8 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    companion object {
 
+    companion object {
 
         private val RESULE_CODE = 1
     }

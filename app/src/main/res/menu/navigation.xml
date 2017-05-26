@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/recents"
+        android:title="首页" />
+
+    <item
+        android:id="@+id/favourites"
+        android:title="内容" />
+
+    <item
+        android:id="@+id/nearby"
+        android:title="更多" />
+</menu>

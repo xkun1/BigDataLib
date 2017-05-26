@@ -89,8 +89,8 @@ public class BaseLibTopBar extends RelativeLayout {
         topLeftText = new TextView(context);
         topRightText = new TextView(context);
 
-        leftImage=new ImageView(context);
-        rightImage=new ImageView(context);
+        leftImage = new ImageView(context);
+        rightImage = new ImageView(context);
 
 
         topBarText.setText(mTitle);
@@ -153,33 +153,38 @@ public class BaseLibTopBar extends RelativeLayout {
         topLeftText.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                topBarClickListener.leftClick(v);
+                if (topBarClickListener != null) {
+                    topBarClickListener.leftClick(v);
+                }
+
             }
         });
         leftImage.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                topBarClickListener.leftClick(v);
+                if (topBarClickListener != null) {
+                    topBarClickListener.leftClick(v);
+                }
             }
         });
         topRightText.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                topBarClickListener.rightClick(v);
+                if (topBarClickListener != null) {
+                    topBarClickListener.rightClick(v);
+                }
+
             }
         });
         rightImage.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                topBarClickListener.rightClick(v);
+                if (topBarClickListener != null) {
+                    topBarClickListener.rightClick(v);
+                }
             }
         });
 
-
-    }
-
-    public BaseLibTopBar(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
 
     }
 
@@ -196,7 +201,7 @@ public class BaseLibTopBar extends RelativeLayout {
         topBarText.setText(titleText);
     }
 
-    public interface TopBarClickListener {
+    interface TopBarClickListener {
         void leftClick(View view);
 
         void rightClick(View view);
