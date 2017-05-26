@@ -1,5 +1,6 @@
 package com.bigdata.bigdatalib.kotlin
 
+import android.content.Intent
 import com.bigdata.bigdatalib.ApiServer
 import com.bigdata.bigdatalib.dialog.OrCodeDigFragment
 import com.bigdata.mylibrary.ui.LibraryBaseActivity
@@ -20,4 +21,5 @@ open class BaseActivity : LibraryBaseActivity() {
     }
 
 
+    open fun onActivityResult(requestCode: Int?, resultCode: Int?, data: Intent?) {}
 }

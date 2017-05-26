@@ -1,8 +1,11 @@
 package com.bigdata.bigdatalib;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ListView;
 
 import com.bigdata.bigdatalib.kotlin.BaseActivity;
@@ -27,21 +30,22 @@ public class ListViewActivity extends BaseActivity {
     private List<Integer> strings;
 
     private int num;
+    LayoutInflater inflater;
 //    private RecyclerView recyclerView;
 //    private BaseRecyclerViewAdapter<Integer> adapterRecycler;
 
+    @SuppressLint("InflateParams")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ativity_listview);
         strings = new ArrayList<>();
-
+        inflater = LayoutInflater.from(this);
         libSwipeRefreshLayout = (BaseLibSwipeRefreshLayout) findViewById(R.id.refrshLayout);
+        View inflate = inflater.inflate(R.layout.more_layout, null);
         initData();
         initListView();
 //        initRecycler();
-
-
         libSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -89,6 +93,7 @@ public class ListViewActivity extends BaseActivity {
             }
         };
         mListView.setAdapter(adapter);
+
     }
 
     private void initData() {
@@ -99,7 +104,7 @@ public class ListViewActivity extends BaseActivity {
     }
 
     private void moreData() {
-        for (int i =0; i < 50; i++) {
+        for (int i = 0; i < 50; i++) {
             strings.add(i);
         }
     }

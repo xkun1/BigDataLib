@@ -28,7 +28,8 @@ class MainActivity : BaseActivity() {
         button_orCode.setOnClickListener {
             val b = RxPermissionsUtils.setRequest(this@MainActivity, Manifest.permission.CAMERA)
             if (b) {
-                startActivityForResult(Intent(this@MainActivity, CaptureActivity::class.java), RESULE_CODE)
+                startActivityForResult(Intent(this@MainActivity, CaptureActivity::class.java), RESULE_CODE!!)
+//                startActivityForResult(Intent(this@MainActivity, CaptureActivity::class.java), RESULE_CODE)
             } else {
                 ToastUtils.showLong("请打开相机权限")
             }
@@ -40,12 +41,12 @@ class MainActivity : BaseActivity() {
 
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+    override fun onActivityResult(requestCode: Int?, resultCode: Int?, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
                 RESULE_CODE -> {
-                    val stringExtra = data.getStringExtra(Constant.ORCODE_RESULT)
+                    val stringExtra = data!!.getStringExtra(Constant.ORCODE_RESULT)
                     if (stringExtra != null) {
                         ToastUtils.showLong(stringExtra)
                     } else {
@@ -56,9 +57,8 @@ class MainActivity : BaseActivity() {
         }
     }
 
-
     companion object {
 
-        private val RESULE_CODE = 1
+        private var RESULE_CODE: Int? = 1
     }
 }

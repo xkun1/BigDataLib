@@ -20,6 +20,8 @@ import com.bigdata.mylibrary.util.LogUtils;
  * Date:2017/5/26 or 下午2:33
  * email:hekun@gamil.com
  * Desc: 实现上啦加载更多
+ * 支持listView,RecyclerView
+ * 支持自定义底部
  */
 
 public class BaseLibSwipeRefreshLayout extends SwipeRefreshLayout {
@@ -34,6 +36,12 @@ public class BaseLibSwipeRefreshLayout extends SwipeRefreshLayout {
     private ListView mListView;
     private RecyclerView mRecyclerView;
     private OnLoadListener mOnLoadListener;
+
+    private View mListViewFooter;
+    /**
+     * 是否在加载中 ( 上拉加载更多 )
+     */
+    private boolean isLoading = false;
 
     public BaseLibSwipeRefreshLayout(Context context) {
         super(context, null);
@@ -70,8 +78,6 @@ public class BaseLibSwipeRefreshLayout extends SwipeRefreshLayout {
                     }
                     TYPE = 1;
                 }
-
-
             }
         }
     }
@@ -133,6 +139,7 @@ public class BaseLibSwipeRefreshLayout extends SwipeRefreshLayout {
     private void loadMoreData() {
         System.out.println("loading data...");
         if (mOnLoadListener != null) {
+            isLoading = true;
             mOnLoadListener.onLoad();
         }
     }
