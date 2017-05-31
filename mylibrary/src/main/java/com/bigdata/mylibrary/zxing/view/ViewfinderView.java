@@ -117,7 +117,7 @@ public final class ViewfinderView extends View {
         density = context.getResources().getDisplayMetrics().density;
         //将像素转换成dp
         ScreenRate = (int) (20 * density);
-
+        CameraManager.init(context);
         paint = new Paint();
         Resources resources = getResources();
         maskColor = resources.getColor(R.color.viewfinder_mask);
