@@ -104,7 +104,7 @@ public class CustomPopWindow {
         popupWindow.setTouchable(mTouchable);
     }
 
-    private PopupWindow build(){
+    public PopupWindow build(){
 
         if(mContentView == null){
             mContentView = LayoutInflater.from(mContext).inflate(mResLayoutId,null);

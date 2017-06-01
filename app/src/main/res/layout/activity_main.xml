@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,50 +10,56 @@
     <Button
         android:id="@+id/button_net"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:text="Net_Lib" />
 
     <Button
         android:id="@+id/button_webView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:text="WebView_Lib" />
 
 
     <Button
         android:id="@+id/button_orCode"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:text="OrCode" />
 
     <Button
         android:id="@+id/button_setOrCode"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:text="SET_ORCODE" />
 
     <Button
         android:id="@+id/ListView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:text="联系人ListView" />
 
     <Button
         android:id="@+id/button_chart"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:text="图表" />
     <Button
         android:id="@+id/button_listview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:text="ListView" />
+    <Button
+        android:id="@+id/button_popWindow"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="popWindow" />
 
 </LinearLayout>
