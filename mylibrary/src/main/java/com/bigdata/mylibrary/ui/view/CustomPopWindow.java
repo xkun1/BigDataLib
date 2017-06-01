@@ -162,8 +162,6 @@ public class CustomPopWindow {
             return this;
         }
 
-
-
         public PopupWindowBuilder setView(int resLayoutId){
             mCustomPopWindow.mResLayoutId = resLayoutId;
             mCustomPopWindow.mContentView = null;
