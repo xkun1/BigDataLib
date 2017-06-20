@@ -10,6 +10,7 @@ import com.bigdata.mylibrary.util.LogUtils
  * Date:2017/5/19 or 上午9:25
  * email:hekun@gamil.com
  * Desc:网络库，image图库，Log库，文件下载库，Toast库，UI库
+ * 和一些常用的工具，二维码生成和扫描，图表库
  */
 
 object Library {

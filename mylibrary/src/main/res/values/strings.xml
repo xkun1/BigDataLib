@@ -4,6 +4,10 @@
     <string name="app_name">zixingLibrary</string>
     <string name="scan_text">将二维码/条码放入框中进行扫描</string>
 
+    <string name="loading_message">正在加载数据...</string>
+    <string name="empty_message">暂无数据显示，点击重新加载</string>
+    <string name="error_message">请求数据失败，点击重新加载</string>
+    <string name="empty_button">点击重试</string>
 
     <string name="app_picker_name">Applications</string>
     <string name="bookmark_picker_name">Bookmarks</string>

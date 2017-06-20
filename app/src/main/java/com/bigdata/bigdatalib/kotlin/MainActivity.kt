@@ -41,10 +41,11 @@ class MainActivity : BaseActivity() {
         findViewById(R.id.ListView).setOnClickListener { ActivityUtils.startActivity(this@MainActivity, LinkManActivity::class.java) }
         findViewById(R.id.button_chart).setOnClickListener { ActivityUtils.startActivity(this@MainActivity, ChartActivity::class.java) }
         findViewById(R.id.button_listview).setOnClickListener { ActivityUtils.startActivity(this@MainActivity, ListViewActivity::class.java) }
+        ;
         findViewById(R.id.button_popWindow).setOnClickListener {
             val inflate = LayoutInflater.from(this@MainActivity).inflate(R.layout.pop_layout, null)
             CustomPopWindow.PopupWindowBuilder(this).setView(R.layout.pop_layout)
-                    .create().showAsDropDown(inflate,200,210).build()
+                    .create().showAsDropDown(inflate,windowManager.defaultDisplay.width,windowManager.defaultDisplay.height/2).build()
         }
     }
 

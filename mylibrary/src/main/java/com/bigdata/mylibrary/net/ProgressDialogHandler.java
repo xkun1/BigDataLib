@@ -14,8 +14,9 @@ import android.os.Message;
  */
 
 public class ProgressDialogHandler extends Handler {
-    public static final int SHOW_PROGRESS_DIALOG = 1;
-    public static final int DISMISS_PROGRESS_DIALOG = 2;
+
+    static final int SHOW_PROGRESS_DIALOG = 1;
+    static final int DISMISS_PROGRESS_DIALOG = 2;
 
     private ProgressDialog pd;
     private Context context;

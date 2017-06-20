@@ -26,6 +26,7 @@ public abstract class LibraryBaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mRetroFactory = RetroFactory.getInstance();
         mBaseObserVable = BaseObserVable.getInstance();
+        setContentView(layoutId());
         Utils.init(this);
         if (mBaseObserVable != null && mRetroFactory != null) {
             init();
@@ -33,6 +34,8 @@ public abstract class LibraryBaseActivity extends AppCompatActivity {
             LogUtils.d("初始化失败,请查看Application");
         }
     }
+
+    protected abstract int layoutId();
 
     protected abstract void init();
 

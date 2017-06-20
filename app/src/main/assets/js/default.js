@@ -6,7 +6,7 @@ var TIMESTAMP;
 
 $(function () {
 
-	if(DEFAULTCOUNT > 0) SECONDLOADED = false;
+    if (DEFAULTCOUNT > 0) SECONDLOADED = false;
 
     if (PARAM_QL == 1) {
         $("#quicklaunch").removeAttr("hidden");
@@ -16,138 +16,136 @@ $(function () {
     if (PARAM_FID == FUNCTION_F10) {
         $("#menu .about").removeClass("default");
         $("#menu .about").addClass("sd");
-        $("#menu .about").attr("href", "default.htm?c={0}&fid={1}&istophide={2}&cid={3}&sid={4}".format(PARAM_C, FUNCTION_SECU_DIAG,PARAM_HIDETOPBAR,PARAM_CID,PARAM_SID));
+        $("#menu .about").attr("href", "default.htm?c={0}&fid={1}&istophide={2}&cid={3}&sid={4}".format(PARAM_C, FUNCTION_SECU_DIAG, PARAM_HIDETOPBAR, PARAM_CID, PARAM_SID));
         $("#menu .about").attr("target", "_self");
 
-		if(PARAM_SID.toUpperCase() == "GG004")
-		{
-			$("#menu .about").attr("href", "https://robot.gf.com.cn/#/diagnosis?exchange={0}&code={1}&from=f10".format(PARAM_TRADEEXCHANGE,PARAM_TRADECODE));
-		}
+        if (PARAM_SID.toUpperCase() == "GG004") {
+            $("#menu .about").attr("href", "https://robot.gf.com.cn/#/diagnosis?exchange={0}&code={1}&from=f10".format(PARAM_TRADEEXCHANGE, PARAM_TRADECODE));
+        }
     }
     else if (PARAM_FID == FUNCTION_SECU_DIAG) {
         $("#menu .about").removeClass("default");
         $("#menu .about").addClass("f10");
 
-        $("#menu .about").attr("href", "default.htm?c={0}&cid={1}&fid={2}&istophide={3}&sid={4}".format(PARAM_C, PARAM_CID,FUNCTION_F10,PARAM_HIDETOPBAR,PARAM_SID));
+        $("#menu .about").attr("href", "default.htm?c={0}&cid={1}&fid={2}&istophide={3}&sid={4}".format(PARAM_C, PARAM_CID, FUNCTION_F10, PARAM_HIDETOPBAR, PARAM_SID));
         $("#menu .about").attr("target", "_self");
     }
 
     GetData(CurrentParsedUrl.param("ids"), DEFAULTCOUNT);
 
-/*
-    $("#menu").on("drag", function (e) {
-        var stamp = new Date().getTime();
-        if (stamp - TIMESTAMP <= 1000) return;
-        if (e.orientation == "horizontal") {
-            if (e.direction == 1) {
-                $("#menu .leftbutton").click();
-            }
-            else if (e.direction == -1) {
-                $("#menu .rightbutton").click();
-            }
+    /*
+     $("#menu").on("drag", function (e) {
+     var stamp = new Date().getTime();
+     if (stamp - TIMESTAMP <= 1000) return;
+     if (e.orientation == "horizontal") {
+     if (e.direction == 1) {
+     $("#menu .leftbutton").click();
+     }
+     else if (e.direction == -1) {
+     $("#menu .rightbutton").click();
+     }
 
-            e.preventDefault();
-            TIMESTAMP = new Date().getTime();
-        }
-    });
+     e.preventDefault();
+     TIMESTAMP = new Date().getTime();
+     }
+     });
 
-    $("#main").on("drag", function (e) {
-        var stamp = new Date().getTime();
-        if (stamp - TIMESTAMP <= 2000) return;
-        //        $("#main").animate({ opacity: 0.1 }, "normal", function () {
-        //            $("#main").animate({ opacity: 1 });
-        //        });
-        if (e.orientation == "horizontal") {
-            if (e.direction == 1) {
+     $("#main").on("drag", function (e) {
+     var stamp = new Date().getTime();
+     if (stamp - TIMESTAMP <= 2000) return;
+     //        $("#main").animate({ opacity: 0.1 }, "normal", function () {
+     //            $("#main").animate({ opacity: 1 });
+     //        });
+     if (e.orientation == "horizontal") {
+     if (e.direction == 1) {
 
-                var prevs = $("#menu .selected").prev().not(".about");
-                if (prevs.length > 0) {
-                    prevs.click();
-                } else {
-                    //history.go(-1);
-                }
-            }
-            else if (e.direction == -1) {
-                var nexts = $("#menu .selected").next().not(".about");
-                if (nexts.length > 0) {
-                    nexts.click();
-                } else {
-                    //history.go(1);
-                }
-            }
+     var prevs = $("#menu .selected").prev().not(".about");
+     if (prevs.length > 0) {
+     prevs.click();
+     } else {
+     //history.go(-1);
+     }
+     }
+     else if (e.direction == -1) {
+     var nexts = $("#menu .selected").next().not(".about");
+     if (nexts.length > 0) {
+     nexts.click();
+     } else {
+     //history.go(1);
+     }
+     }
 
-            e.preventDefault();
-            TIMESTAMP = new Date().getTime();
-        }
-    });
+     e.preventDefault();
+     TIMESTAMP = new Date().getTime();
+     }
+     });
 
 
-    $("#menu .leftbutton").bind("click", function () {
-        if ($("#menu").width() - $("#menulist").width() >= 70) {
-            return;
-        }
+     $("#menu .leftbutton").bind("click", function () {
+     if ($("#menu").width() - $("#menulist").width() >= 70) {
+     return;
+     }
 
-        var left = parseInt($("#menulist").css("left").replace("px"));
-        var tick = 200;
-        var val = 0;
-        if (left <= tick * -1) {
-            val = left + tick;
-        }
-        else {
-            val = 0;
-            $("#menu .leftbutton").hide();
-        }
-        $("#menulist").animate({ left: val + "px" });
+     var left = parseInt($("#menulist").css("left").replace("px"));
+     var tick = 200;
+     var val = 0;
+     if (left <= tick * -1) {
+     val = left + tick;
+     }
+     else {
+     val = 0;
+     $("#menu .leftbutton").hide();
+     }
+     $("#menulist").animate({ left: val + "px" });
 
-        if ($("#menu").width() - $("#menulist").width() < 50) {
-            $("#menu .rightbutton").show();
-        }
-    });
+     if ($("#menu").width() - $("#menulist").width() < 50) {
+     $("#menu .rightbutton").show();
+     }
+     });
 
-    $("#menu .rightbutton").bind("click", function () {
-        if ($("#menu").width() - $("#menulist").width() >= 70) {
-            return;
-        }
+     $("#menu .rightbutton").bind("click", function () {
+     if ($("#menu").width() - $("#menulist").width() >= 70) {
+     return;
+     }
 
-        $("#menu .leftbutton").show();
-        var left = parseInt($("#menulist").css("left").replace("px"));
-        var tick = 200;
-        var width = $("#menulist").width();
-        var right = left + width;
-        var parentright = $("#menu").width() - 50;
-        var offset = right - parentright;
-        var val = 0;
+     $("#menu .leftbutton").show();
+     var left = parseInt($("#menulist").css("left").replace("px"));
+     var tick = 200;
+     var width = $("#menulist").width();
+     var right = left + width;
+     var parentright = $("#menu").width() - 50;
+     var offset = right - parentright;
+     var val = 0;
 
-        if (offset >= tick) {
-            val = left - tick;
-        }
-        else {
-            val = left - offset;
-            $("#menu .rightbutton").hide();
-        }
-        $("#menulist").animate({ left: val + "px" });
+     if (offset >= tick) {
+     val = left - tick;
+     }
+     else {
+     val = left - offset;
+     $("#menu .rightbutton").hide();
+     }
+     $("#menulist").animate({ left: val + "px" });
 
-        //$("#menulist").css("left", val + "px");
-    });
-    */
+     //$("#menulist").css("left", val + "px");
+     });
+     */
 });
 
 
-function GetData(id,count) {
+function GetData(id, count) {
     if (!id) id = "";
-//    Globals.Loading(true);
-	var url = GETDATAURL.format(PARAM_C, id, INITIALIZEDMENU ? 1 : 0, PARAM_CID, PARAM_FID);
-	if(count && count > 0)
-	{
-		url = url + "&count={0}".format(count);
-	}
+    Globals.Loading(true);
+    var url = GETDATAURL.format(PARAM_C, id, INITIALIZEDMENU ? 1 : 0, PARAM_CID, PARAM_FID);
+    if (count && count > 0) {
+        url = url + "&count={0}".format(count);
+    }
     DataService.GetData(url, true, "GET", "", function (data) {
         Generate(data, id);
     }, "jsonp");
 }
 
 function Generate(data, id) {
-	$("#main .summary").remove();
+    $("#main .summary").remove();
     $("#main .module").not("#moduletemplate").remove();
     $("#quicklaunch a").remove();
     if (!INITIALIZEDMENU) {
@@ -157,10 +155,10 @@ function Generate(data, id) {
             if (val.pid == 0 && val.on_menu != "false")
                 return true;
         }, false);
-        
-        if(FIRSTMENUS.length == 1){
-        		$("#menu #menulist").hide();
-        	}
+
+        if (FIRSTMENUS.length == 1) {
+            $("#menu #menulist").hide();
+        }
 
         //MainMenu
         $.each(FIRSTMENUS, function (i, obj) {
@@ -181,8 +179,8 @@ function Generate(data, id) {
         });
         //诊股、F10-单行时调整样式
         var menulistheight = $("#menulist").height();
-        if(menulistheight<=30){
-            $("#menulist").animate({ padding: 5+"px"+" "+0});
+        if (menulistheight <= 30) {
+            $("#menulist").animate({padding: 5 + "px" + " " + 0});
         }
 
         SetToCenter($("#menulist .selected"));
@@ -218,14 +216,14 @@ function Generate(data, id) {
     }, false);
 
     if (CURRENTSECONDMENUS.length > 0) {
-		window.onscroll = function(){ 
-			//var t = document.documentElement.scrollTop || document.body.scrollTop;  
-			//if(!SECONDLOADED && t > 120)
-			//{
-				//SECONDLOADED = true;
-				//GetData(CurrentParsedUrl.param("ids"));
-			//}
-		} 
+        window.onscroll = function () {
+            //var t = document.documentElement.scrollTop || document.body.scrollTop;
+            //if(!SECONDLOADED && t > 120)
+            //{
+            //SECONDLOADED = true;
+            //GetData(CurrentParsedUrl.param("ids"));
+            //}
+        }
 
         $.each(CURRENTSECONDMENUS, function (i, obj) {
             var template = $("#moduletemplate").clone();
@@ -297,15 +295,12 @@ function Generate(data, id) {
                     }
                 }
             }
-
             template.find(".category").hide();
-            
             template.find(".content").html(content);
             $("#main").append(template);
-        }else
-		{
-		$("#main").append("<div class='summary'>近期没有该代码披露数据！</div>");
-		}
+        } else {
+            $("#main").append("<div class='summary'>近期没有该代码披露数据！</div>");
+        }
     }
 
     try {
@@ -322,82 +317,106 @@ function Generate(data, id) {
 
     $("#quicklaunch a").bind("click", function () {
         var category = $(".category[val={0}]".format($(this).attr("val")));
-        $("html,body").animate({ scrollTop: category.offset().top - 70 }, 600, function () {
+        $("html,body").animate({scrollTop: category.offset().top - 70}, 600, function () {
             var current = category.css("background-color");
 
-            category.parent().animate({ backgroundColor: "#e8e8e8" }, 100).animate({ backgroundColor: current }, 1000);
+            category.parent().animate({backgroundColor: "#e8e8e8"}, 100).animate({backgroundColor: current}, 1000);
         });
     });
 
     $(".list .item").bind("click", function () {
-        var detail = $(this).next();
-        detail.show();
-        $(".list .item").hide();
-        $(".list .sketch").hide();
-        $(".list .footer").hide();
-
-		$(".newstitlearea a").attr("href",ATTACHMENT.format(detail.attr("filename")));
-		$(".newstitlearea a").text("打开附件文件");
-		
-		if(detail.attr("checkname") == "1")
-		{
-				$(".newstitlearea a").attr("href",ATTACHMENT_REPORT.format(detail.attr("filename")));
-				
-						if(detail.find(".newstitlearea").text().indexOf("江苏中民金服资产管理股份有限公司") == -1)
-					  {
-							$(".newstitlearea a").text("");
-						}
-		}
-
-        var category = $(this).parent();
-        if (detail.attr("loadtype") == "async") {
-            var id = detail.attr("id");
-            if (id != '-' && id != '') {
-                Globals.Loading(true);
-                DataService.GetData(GETDETAILINFOURL.format(DEFAULTDETAILDATABASE, parseInt(id), "CONT"), true, "GET", "", function (data) {
-                    detail.find(".newscontent .mainbody").html(data.CONT);
-                    Globals.Loading(false);
-                    $("html,body").animate({ scrollTop: category.offset().top - 80 }, 10);
-
-                }, "jsonp");
-            }
+        $("#newpage").show();
+        $("#newpage").siblings().hide();
+        var id = $(this).attr("id");
+        if (id != '-' && id != '') {
+            Globals.Loading(true);
+            DataService.GetData(GETDETAILINFOURL.format(DEFAULTDETAILDATABASE, parseInt(Math.round(id)), "CONT,TIT,INFO_SOUR,FILENAME,ID,PUB_DT,DETAIL_ID"), true, "GET", "", function (data) {
+                if(data.TIT!=null&&data.TIT!=""&&data.TIT!=undefined) {
+                    $("#newpage h1").html(data.TIT);
+                }
+                if(data.PUB_DT!=null){
+                    var html_text="";
+                    if(data.PUB_DT.sec!=null&&data.PUB_DT.sec!=""&&data.PUB_DT.sec!=undefined) {
+                        var unixTimestamp = new Date(data.PUB_DT.sec* 1000);
+                        html_text+=unixTimestamp.toLocaleString();
+                    }
+                    if(data.INFO_SOUR!=null&&data.INFO_SOUR!=""&&data.INFO_SOUR!=undefined) {
+                        html_text+="　"+data.INFO_SOUR;
+                    }
+                    $("#newpage .time").html(html_text);
+                }
+                if(data.CONT!=null&&data.CONT!=""&&data.CONT!=undefined){
+                    var cont=data.CONT.replace(/(\r\n)|(\n)/g,"<br>").replace(/\s/g,"&nbsp;");
+                    $("#newpage .article").html(cont);
+                }
+                if(data.FILENAME!=null&&data.FILENAME!=""&&data.FILENAME!=undefined){
+                    $("#newpage .time").append("　 <a href='" + ATTACHMENT_REPORT.format(data.FILENAME) + "'>打开附件文件</a>");
+                }
+                Globals.Loading(false);
+            }, "jsonp");
         }
-
-        $("html,body").animate({ scrollTop: category.offset().top - 80 }, 10);
-
     });
-    $(".showorhide").bind("click",function(){
-        var showorhide=$(".showorhide");
-        var writing=showorhide.text();
-        if(writing=="展示全部"){
-            showorhide.text("收起");
-            $(this).width("40px");
-        }else {
-            showorhide.text("展示全部");
+
+    $(".showorhide").bind("click", function () {
+        var writing = $(this).attr("type");
+        if (writing == "hide") {
+            $(this).attr("type", "show");
+            $(this).find("i:eq(0)").hide();
+            $(this).find("i:eq(1)").show();
+        } else {
+            $(this).attr("type", "hide");
+            $(this).find("i:eq(0)").show();
+            $(this).find("i:eq(1)").hide();
             $("#izl_rmenu .btn-top").click();
-            $(this).width("68px");
         }
-        var comtable=showorhide.parent().parent().find(".commontable");
-        comtable.each(function(){
+        var comtable = $(this).parent().prev();
+        console.log(comtable.html())
+        comtable.each(function () {
             $(this).find(".signhide").toggleClass("hide");
         });
     });
-    
+
+    $(".more").bind("click", function () {
+        var moreClick = $(this);
+        if (moreClick.parent().index() == 0) {
+            moreClick.addClass("hide");
+            moreClick.parent().next().find(".more").removeClass("hide");
+            moreClick.parents(".morefooter").siblings().find("li").each(function (i, obj) {
+                if (i > 9) {
+                    if (!$(obj).hasClass("hide"))
+                        $(obj).addClass("hide");
+                }
+            });
+        } else if (moreClick.parent().index() == 1) {
+            moreClick.parent().prev().find(".more").removeClass("hide");
+            var more = moreClick.parents(".morefooter").siblings().find(".hide");
+            more.each(function (i, obj) {
+                if (i < 11) {
+                    $(obj).removeClass("hide");
+                    if (i == more.length - 1) {
+                        moreClick.addClass("hide");
+                    }
+                }
+            });
+        }
+    });
+
     $(".eventstitle").bind("click", function () {
         $(this).parent().parent().next().show();
         $(".eventsitem").hide();
-        $("html,body").animate({ scrollTop: $(this).parent().parent().parent().offset().top - 80 }, 10);
+        $("html,body").animate({scrollTop: $(this).parent().parent().parent().offset().top - 80}, 10);
     });
 
-    $(".detail .close").bind("click", function () {
-        //$(this).parent().hide();
-        $(".detail").hide();
-        $(".list .item").show();
-        $(".list .sketch").show();
-        $(".list .footer").show();
-        $(".eventsitem").show();
+    $("#newpage .close").bind("click", function () {
+        $("#newpage h1").html("");
+        $("#newpage .time").html("");
+        $("#newpage .article").html("");
+        $("#newpage").siblings().show();
+        $(this).parent().hide();
+        Globals.Loading(false);
     });
     Globals.Loading(false);
+
 }
 
 function SetToCenter(obj) {
@@ -417,7 +436,7 @@ function SetToCenter(obj) {
     val = objleft - ($("#menu").width() / 2);
 
     //$("#menulist").css("left", val * -1 + "px");
-    $("#menulist").animate({ left: val * -1 + "px" }, 1, function () {
+    $("#menulist").animate({left: val * -1 + "px"}, 1, function () {
         left = parseInt($("#menulist").css("left").replace("px"));
         if (left >= 0) {
             // $("#menulist").animate({ left: 0 + "px" });

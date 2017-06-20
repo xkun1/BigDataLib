@@ -6,12 +6,8 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.View;
-import android.webkit.ConsoleMessage;
-import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-
-import com.bigdata.mylibrary.util.LogUtils;
 
 /**
  * user:kun
@@ -24,8 +20,6 @@ public class LibraryWebView extends WebView {
 
 
     private Context mContext;
-    private LibraryWebChrome libraryWebChrome;
-    private LibraryWebClient libraryWebClient;
 
     public Context getmContext() {
         return mContext;
@@ -35,21 +29,6 @@ public class LibraryWebView extends WebView {
         this.mContext = mContext;
     }
 
-    public LibraryWebChrome getLibraryWebChrome() {
-        return libraryWebChrome;
-    }
-
-    public void setLibraryWebChrome(LibraryWebChrome libraryWebChrome) {
-        this.libraryWebChrome = libraryWebChrome;
-    }
-
-    public LibraryWebClient getLibraryWebClient() {
-        return libraryWebClient;
-    }
-
-    public void setLibraryWebClient(LibraryWebClient libraryWebClient) {
-        this.libraryWebClient = libraryWebClient;
-    }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public LibraryWebView(Context context) {
@@ -96,7 +75,8 @@ public class LibraryWebView extends WebView {
          */
         this.getSettings().setUseWideViewPort(true);//设置此属性，可任意比例缩放
 
-
+        this.setWebChromeClient(new LibraryWebChrome());
+        this.setWebViewClient(new LibraryWebClient(mContext));
         /*
         webView自适应屏幕
          */
@@ -104,15 +84,6 @@ public class LibraryWebView extends WebView {
         this.getSettings().setLoadWithOverviewMode(true);
 
         this.requestFocus();
-        this.setWebChromeClient(new WebChromeClient(){
-            @Override
-            public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
-                LogUtils.d(consoleMessage.message() + " -- From line "
-                        + consoleMessage.lineNumber() + " of "
-                        + consoleMessage.sourceId() );
-                return true;
-            }
-        });
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             getSettings().setLoadsImagesAutomatically(true);
         } else {
@@ -125,8 +96,6 @@ public class LibraryWebView extends WebView {
         this.clearHistory();
         this.getSettings().setJavaScriptEnabled(true);
         this.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
-
-
 
     }
 }

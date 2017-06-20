@@ -59,6 +59,8 @@ public class LibraryWebClient extends WebViewClient {
         super.onReceivedClientCertRequest(view, request);
     }
 
+
+
     public boolean shouldOverrideUrlLoading(final WebView view, final String url) {
 
         view.postDelayed(new Runnable() {

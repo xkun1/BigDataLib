@@ -1,0 +1,568 @@
+﻿
+html
+{
+    font-family: 'Microsoft YaHei' , SimSun;
+}
+
+.ucase
+{
+    text-transform: uppercase;
+}
+
+#main
+{
+    margin:40px 0;
+    min-height: 300px;
+}
+
+.center
+{
+    text-align: center;
+}
+
+/*通用标题*/
+#header
+{
+    height:40px;
+    background-color:#ff5a00;   /*改*/
+    text-align:center;
+}
+
+#header .t1
+{   
+    font-size: 16px;
+    color: white;
+    line-height: 40px;
+	margin:0px 40px;
+}
+
+#header .t1 span
+{
+    font-size: 16px;
+}
+
+#toparea
+{
+    position: fixed;
+    right: 0;
+    top:0px;
+    width: 100%;
+    z-index: 999;
+}
+.icon-search{
+    background-image:url(../../images/search.png);
+    background-repeat:no-repeat;
+    background-position: center center;
+}
+/*通用菜单*/
+#menu      /*改的*/
+{
+    /*padding:0px 5px;*/
+    /*border-bottom:#d9e7f1 solid 1px;*/
+    /*background-color:#ebf4fb;*/
+}
+
+
+.zd_f10{float: right;width: 50px;height: 50px;margin-top:5px;}
+
+
+#menulist  /*改的*/
+{
+/*margin:0 50px 0 0;*/
+}
+#menulist .selected
+{
+    color: #ff3d00;
+    border-bottom: 2px solid #ff3d00;
+}
+#menulist a   /*改的*/
+{
+    display: inline-block;
+    color: #848b9d;
+    width: calc((100% - 4px)/5);
+    margin-right: 1px;
+    background: #f2f4f8;
+    font-size: 16px;
+    height: 40px;
+    line-height: 42px;
+    text-align: center;
+    text-decoration: none;
+    border-bottom: 2px solid #f2f4f8;
+}
+#menulist a:last-child{    /*改的*/
+    margin: 0;
+}
+
+#menu .about
+{
+
+    display: inline-block;
+    /*top:0px;*/
+    /*left:0px;*/
+    /*right: 0px;*/
+    /*width: 40px;*/
+    /*height: 40px;*/
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+    color: #fff;
+    float:right;
+    /*position: fixed;*/
+    /*z-index:9999;*/
+}
+
+#menu .f10
+{
+    background-image:url(../../images/f10.png);background-size:30px 30px;background-repeat:no-repeat;
+    /*margin:5px 0 0 5px;*/
+    margin:0 0 -10px 0;
+}
+
+#menu .sd
+{
+    background-image:url(../../images/zd.png);background-size:30px 30px;background-repeat:no-repeat;
+    /*margin:5px 0 0 5px;*/
+    margin:0 0 -9px 0;
+}
+
+#menu .default
+{
+    background: url(../../images/u.png) 8px -59px no-repeat;
+}
+
+
+
+
+
+
+/*底部区域*/
+#bottomarea
+{
+    font-size: 12px;
+    color: #2f2f2f;
+    background-color: #e6e6e6;
+    line-height:18px;
+    text-align:center;
+    padding:5px 0;
+    margin: 10px 0 0 0; /*bottom: 0;     position: fixed; */
+    width: 100%;
+}
+
+
+/*悬浮层*/
+#quicklaunch
+{
+    background-color:#036ebb;
+    border: 1px solid #fff;
+    width: 25px;
+    position: fixed;
+    z-index:1;
+    right:-1px;
+    top:40px;
+    padding-top: 7px;
+    color:#fff;
+    -webkit-box-shadow: -2px 2px 15px #ccc;
+    -moz-box-shadow: -2px 2px 15px #ccc;
+    box-shadow: -2px 2px 15px #ccc;
+}
+
+#bottomarea a,#bottomarea a:visited
+{
+    color: #006dbd;
+}
+
+#quicklaunch a
+{
+    color: #fff;
+    font-size: 12px;
+    text-decoration: none;
+    display: inline-block;
+    line-height: 15px;
+    text-align: center;
+    padding: 5px 3px 5px 3px;
+    border-top: 1px solid #d5d5d5;
+    cursor: pointer;
+}
+
+
+/*Loading*/
+#loading
+{
+    text-align: center;
+    margin: auto;
+    position: absolute;
+    top: 30%;
+    width: 100%;
+}
+
+.line
+{
+    margin: 6px 0 10px 0;
+    padding: 0px;
+    line-height: 0px;
+    height: 0px;
+    border-bottom: 1px solid #c1c1c1;
+}
+
+
+.ratebar
+{
+    margin: auto;
+    height: 30px;
+    width: 260px;
+}
+
+.ratebar span
+{
+    display: inline-block;
+    width: 50px;
+    text-indent: 15px;
+    height: 30px;
+    line-height: 30px;
+    background-repeat: no-repeat;
+    background-position: 0 center;
+}
+
+.date
+{
+    font-size: 16px;
+    font-family: arial;
+    white-space:nowrap;
+}
+
+.listdate
+{
+    font-size: 16px;
+    font-family: arial;
+    color: blue;
+    margin-right: 4px;
+}
+
+.width2c
+{
+    width: 32px;
+}
+
+.width3c
+{
+    width: 48px;
+}
+
+.width4c
+{
+    /*width: 60px; */
+    width: 65px;
+    text-align:right;
+    font-size: 12px;
+}
+
+.width4c1
+{
+    text-align:right;font-size: 12px;width:80px;
+}
+
+.width4c2
+{
+    text-align:right;font-size: 12px;width:60px;
+}
+.width4c3
+{
+    text-align:center;font-size: 12px;width:65px;
+}
+
+
+
+
+
+
+.width5c
+{
+    width: 90px;
+}
+.width5c1
+{
+    width: 100px;
+}
+.width5c-c
+{
+color:#999;
+}
+
+.width5c_title{width: 80px;color: #999}
+.width5c_time{width:80px;}
+
+.width5c_title1{color: #999;}
+.width5c_time1{width:60px;}
+
+
+.width5c_title2{color: #006dbd}
+
+.width7c
+{
+    width: 130px;
+}
+.width9c
+{
+    width: 75px;
+}
+.width8c
+{
+    width: 120px;color:#999;
+}
+
+.width6c
+{
+    width: 90px;
+}
+
+.recommend
+{font-size:12px;
+}
+
+.bluefont
+{
+    color: dodgerblue;
+}
+
+.bluefont span
+{
+    color: dodgerblue;
+}
+
+.blue
+{
+    color: dodgerblue;
+}
+
+.red
+{
+    color: red;
+}
+
+.green
+{
+    color: #15ea15;
+}
+
+.arrow
+{
+    font-size: 24px;
+}
+
+.commontable_nb
+{
+    border: 0px; margin:0px;
+}
+
+.commontable_nb .bigfont
+{
+    font-size: 24px;
+    font-weight: bold;
+}
+.commontable_nb tr td
+{
+    padding: 3px 10px 3px 3px;
+    font-size: 16px;
+}
+
+#header .bdcode
+{
+    float: right;
+    width: 40px;
+    height: 40px;
+    color: white;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+    position: relative;
+    z-index:999;
+    margin-top:-40px;
+}
+
+.bdinput
+{
+    position: fixed;
+    top: 0px;
+    right: 40px;
+    height: 38px;
+    width: 230px;
+    z-index:9999;
+    background-color: #c30013;
+    display: none;
+    text-align: center;
+    margin-top: 1px;
+}
+
+.bdinput input
+{
+    height: 38px;
+    width: 100%;
+    border: 0;
+    text-indent: 8px;
+}
+.bdinput input:focus
+{
+    outline: none;
+}
+
+.resultlist
+{
+    position: fixed;
+    width: 269px;
+    border: 1px solid #ff5a00;
+    right: 0px;
+    margin-top:-1px;
+    z-index:9999;
+    background-color:#ff5a00;
+    display: none;
+    color:#adc4de;
+    -webkit-box-shadow: -2px 2px 15px #ccc;
+    -moz-box-shadow: -2px 2px 15px #ccc;
+    box-shadow: -2px 2px 15px #ccc;
+    padding: 8px 0 8px 0;
+   
+}
+
+.resultlist ul
+{
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+    color:#adc4de;
+    font-size: 12px;
+    text-indent: 6px;
+	text-align:left;
+}
+
+.resultlist ul li
+{
+    cursor: pointer;
+}
+
+.resultlist ul li span
+{
+    height: 25px;
+    line-height: 25px;
+    font-size: 16px;
+    color: #fff;
+}
+.resultlist .trdcode
+{
+    display: inline-block;
+    text-align: center;
+    width: 80px;
+    float: left;
+}
+.resultlist .secusht
+{
+    display: inline-block;
+    margin: 0px;
+    padding: 0px;
+    width: 100px;
+    float: left;
+    overflow: hidden;
+}
+.resultlist .icon-arrow-right3
+{
+    display: inline-block;
+    float: right;
+    width: 32px;
+    font-size: 16px;
+    color: #ccc;
+}
+
+.charttitle {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 30px;
+}
+
+.right{
+text-align:right;
+}
+.showorhide{
+    float: right;
+    font-size: 14px;
+    color: #00aaff;
+    width: 130px;
+    text-align: right;
+    margin-top: 5px;
+    cursor: pointer;
+}
+.hide{
+    display: none;
+}
+.morefooter{
+    width: 100%;
+    height: 25px;
+    line-height: 22px;
+}
+.morebg{
+    font-size: 14px;
+    color: #0083d6;
+    margin-top: 5px;
+    width: 50%;
+    float: left;
+}
+.more{
+    cursor: pointer;
+}
+
+.report{
+    width: 120px;
+    height: 12px;
+    background-size:100% 100%;
+    display: inline-block;
+    vertical-align: middle;
+}
+.up{
+    background: url("../../images/spirit.png") no-repeat left top;
+    display: inline-block;
+    width: 14px;
+    height: 12px;
+    vertical-align: middle;
+}
+.down{
+    background: url("../../images/spirit.png") no-repeat -13px top;
+    display: inline-block;
+    width: 14px;
+    height: 12px;
+    vertical-align: middle;
+}
+.unit{      /*改*/
+    width: 100%;
+    margin-top: -5px;
+    text-align: center;
+    color: #999;
+    font-size: 12px;
+}
+#newpage{
+    width: 90%;
+    margin: 0 auto;
+    display: none;
+}
+#newpage h1{
+    font-size: 18px;
+    line-height:30px;
+    color:#000;
+    padding-top: 10px;
+}
+#newpage .time{
+    font-size: 13px;
+    color: #858c9e;
+    line-height: 20px;
+    padding: 5px 0;
+}
+#newpage .article{
+    line-height: 22px;
+    margin-bottom: 20px;
+}
+#newpage .close{
+    display: inline-block;
+    float: right;
+    width: 25px;
+    height: 25px;
+    background: url(../../images/u.png) 6px -166px no-repeat;
+    cursor: pointer;
+}
