@@ -1,4 +1,4 @@
-package com.bigdata.mylibrary.ui;
+package com.bigdata.mylibrary.ui.view;
 
 import android.content.Context;
 import android.support.annotation.AttrRes;

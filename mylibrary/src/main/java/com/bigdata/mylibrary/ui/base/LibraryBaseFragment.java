@@ -1,4 +1,4 @@
-package com.bigdata.mylibrary.ui;
+package com.bigdata.mylibrary.ui.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

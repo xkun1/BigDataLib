@@ -2,8 +2,7 @@ package com.bigdata.bigdatalib.kotlin
 
 import android.content.Intent
 import com.bigdata.bigdatalib.ApiServer
-import com.bigdata.bigdatalib.dialog.OrCodeDigFragment
-import com.bigdata.mylibrary.ui.LibraryBaseActivity
+import com.bigdata.mylibrary.ui.base.LibraryBaseActivity
 
 /**
  * user:kun
