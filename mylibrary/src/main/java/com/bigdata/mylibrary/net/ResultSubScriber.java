@@ -47,6 +47,7 @@ public class ResultSubScriber<T> implements Observer<T>, ProgressCancelListener 
     @Override
     public void onSubscribe(Disposable d) {
         mDisposable = d;
+
         LogUtils.d("开始获取数据=======");
         showProgressDialog();
     }

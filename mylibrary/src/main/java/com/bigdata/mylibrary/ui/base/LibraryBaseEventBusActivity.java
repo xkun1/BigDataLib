@@ -10,7 +10,7 @@ import org.greenrobot.eventbus.EventBus;
  * user:kun
  * Date:20/06/2017 or 3:44 PM
  * email:hekun@gamil.com
- * Desc:
+ * Desc: eventBus
  */
 
 public class LibraryBaseEventBusActivity extends AppCompatActivity {

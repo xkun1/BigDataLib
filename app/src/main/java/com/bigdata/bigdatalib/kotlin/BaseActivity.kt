@@ -11,7 +11,7 @@ import com.bigdata.mylibrary.ui.base.LibraryBaseActivity
  * Desc: 所有activity基类
  */
 
-open class BaseActivity : LibraryBaseActivity() {
+open class BaseActivity :LibraryBaseActivity() {
 
     var mApiServer: ApiServer? = null
 

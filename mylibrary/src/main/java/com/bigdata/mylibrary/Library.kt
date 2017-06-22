@@ -40,6 +40,6 @@ object Library {
 
     fun getmContext(): Context {
         if (mContext != null) return mContext as Context
-        throw NullPointerException("u should init first")
+        throw NullPointerException("context...为空")
     }
 }
