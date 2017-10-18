@@ -77,7 +77,20 @@
     color: #999;
     height: 30px;
 }
-.ref .comname{
-    width: 50%;
+.ref .comname1{
+    width: 75%;
     float: left;
+    border-bottom: 1px solid #e6e6e6;
+    padding-bottom: 11px;
+    font-weight: normal;
+    padding-top: 10px;
+}
+.ref .comname2{
+    width: 25%;
+    float: left;
+    text-align: right;
+    border-bottom: 1px solid #e6e6e6;
+    padding-bottom: 11px;
+    font-weight: normal;
+    padding-top: 10px;
 }

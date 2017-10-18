@@ -2,7 +2,8 @@
 .module
 {
     margin: 0px;
-    padding: 0px 10px 0 10px;
+    /*padding: 0px 10px 0 0;*/
+    padding: 0 0;
 	/*background-image:url(../../images/jiange.png);*/
     background-position:bottom center;
     background-repeat: repeat-x;
@@ -16,18 +17,23 @@
     font-size: 16px;
     line-height: 33px;
     height: 33px;
-    color: #ff5a00;
+    color: #fff;
     font-weight: bold;
-
-    padding:0 0 3px 0px;
-    margin:5px 0 0 0;
-    border-bottom:#4F595F solid 1px;
+    text-align: center;
+    padding:10px 0 0 0px;
+    /*margin:5px 0 0 0;*/
+    /*border-bottom:#4F595F solid 1px;*/
 }
 .module .content
 {
     color: #fff;
     font-size: 16px;
-	padding:10px 0 10px 0;
+    /*padding:10px 0 10px 10px;*/
+    padding:10px 0;
+}
+.timer strong{
+    color: #333;
+    font-size: 15px;
 }
 .jiange
 {    
@@ -68,9 +74,11 @@
 
 .module .content .footer
 {
-    font-size: 16px;
-    color: #ddd;
-    line-height: 30px;
+    font-size: 15px;
+    color: #858C9E;
+    line-height: 26px;
+    padding: 0;
+    margin: 0;
 }
 .module .content .footer .date
 {
@@ -78,11 +86,24 @@
 }
 .ref
 {
-    font-size: 12px;
-    color: #999;
+    font-size: 13px;
+    color: #858C9E;
     height: 30px;
 }
-.ref .comname{
-    width: 50%;
+.ref .comname1{
+    width: 75%;
     float: left;
+    border-bottom: 1px solid #e6e6e6;
+    padding-bottom: 11px;
+    font-weight: normal;
+    padding-top: 10px;
+}
+.ref .comname2{
+    width: 25%;
+    float: left;
+    text-align: right;
+    border-bottom: 1px solid #e6e6e6;
+    padding-bottom: 11px;
+    font-weight: normal;
+    padding-top: 10px;
 }

@@ -4,13 +4,44 @@
 .list .item
 {
     /*color: #000000;*/
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 15px;
+    line-height: 20px;
     cursor: pointer; /*height: 24px;*/
     height: auto;
     overflow: visible;
+    /*padding-top: 8px;*/
+    /*padding-bottom: 5px;*/
+    /*border-bottom: 1px solid #4F595F;*/
+}
+
+.list .item p {
+     padding: 0;
+     margin: 0;
+     font-weight: bold;
+     line-height: 21px;
+    padding-top: 8px;
+}
+.list .item:first-child p{
+    padding-top: 0;
+}
+.listcq{
+    position: relative;
+    top: -12px;
+}
+.listcq .item p{
+    margin-top: 19px;
+}
+.newscq:first-of-type{
     padding-top: 5px;
-    border-bottom: 1px solid #4F595F;
+}
+
+.list .newscq p{
+    padding-top: 8px;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: normal;
 }
 
 .list .wrap
@@ -18,10 +49,26 @@
     overflow: visible;
     height: auto;
 }
+.list .wrap p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 15px;
+    /*font-weight: normal;*/
+    margin: 0;
+}
+
+.line02{
+    position: absolute;
+    border-bottom: 1px solid #333438;
+    height: 1px;
+    width: 100%;
+    left: 0;
+}
 
 .list .sketch
 {
-    color: #666;
+    color: #ddd;
     font-size: 14px;
     line-height: 20px;
     padding: 5px 0;
@@ -193,7 +240,7 @@
 .datebar
 {
     font-size: 16px;
-    margin:10px 0 5px 0;
+    margin:15px 0 8px -10px;
     color: #fff;
 }
 
@@ -206,7 +253,7 @@
 {
     width: 100%;
     border-collapse: collapse;
-    color: #858c9e;
+    color:  #B1B6C0;
 }
 .commontable table{   /*改*/
     width: 100%;
@@ -214,87 +261,261 @@
 
 .commontable tr td    /*改*/
 {
-    font-size: 16px;
-    height: 26px;
-    padding: 10px 0 10px 6px;
-    text-align: right;
+    font-size: 14px;
+    /*height: 26px;*/
+    padding: 14px 0px 14px 6px;
+    /*text-align: right;*/
 }
 /*改 下面*/
 .commontable tr{
     /*height: 56px;*/
-    line-height: 26px;
+    line-height: 19px;
+    color: #fff;
 }
 .commontable tr td:nth-of-type(1){
     text-align: left;
     /*color: #fff;*/
 }
+.commontable02 tr td{
+    padding: 14px 8px 14px 6px;
+}
+.commontable02 .number{
+    padding-right: 8px;
+}
+
 .commontable tr:nth-of-type(2n+1){
-    background: #1d1618;
+    /*background: #1B1C20;*/
+    /*background: #281a16;*/
+    background: rgba(255,61,0,0.06);
 }
 
 .commontable tr:nth-child(1) td
 {
-    background-color: #1b1c20;
-    color: #858c9e;
+    /*background-color: #1b1c20;*/
+    color: #858C9E;
     /*font-size: 13px;      !*改*!*/
 }
 
 .commontable .number
 {
     text-align: right;
-    font-family: arial;
-    font-size: 16px;
+    /*font-family: arial;*/
+    font-size: 14px;
+    /*padding-right: 8px;*/
 }
 
+.commontable tbody tr:nth-of-type(1){
+    /*background:#281a16;*/
+    background:#1B1C20;
+}
+table.commontable.moneycq {
+    font-weight: bold;
+    /*text-align: center;*/
+}
+.moneycq tr td{
+    padding: 5px 0 5px 6px;
+}
+.moneycq tr td:nth-last-of-type(2) span,.moneycq tr td:nth-last-of-type(3) span{
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 7px;
+}
+.moneycq tbody tr:nth-child(2) td{
+    padding-top: 12px;
+}
+
+.shareholders02 td i , .shareholders01 td i{
+    font-style:normal;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    text-align: center;
+    color: #fff;
+    background: #858C9E;
+    border-radius: 2px;
+    position: absolute;
+    top: 7px;
+    font-size: 12px;
+}
+.content .shareholders02 tbody tr{
+    background: none;
+}
+.content .shareholders02 tr:nth-of-type(1){
+    background: #1B1C20;
+}
+.content .shareholders02 tr:nth-of-type(2){
+    background: rgba(255,89,0,0.1);
+}
+.content .shareholders02 tr:nth-of-type(3){
+    background: rgba(255,89,0,0.06);
+}
+.content .shareholders02 tr:nth-of-type(4){
+    background: rgba(255,89,0,0.04);
+}
+
+.shareholders02 tr:nth-of-type(2) td i{
+    background:#FF5900;
+}
+ .shareholders02 tr:nth-of-type(3) td i{
+    background:#FF8000;
+}
+.shareholders02 tr:nth-of-type(4) td i{
+    background:#FFA000;
+}
+.shareholders02 tr td:first-of-type,.shareholders01 tr td:first-of-type{
+    position: relative;
+    width: 22px;
+}
+.shareholders01 tr:nth-of-type(2) td i{
+    background:#006EFF;
+}
+.shareholders01 tr:nth-of-type(3) td i{
+    background:#4797FF;
+}
+.shareholders01 tr:nth-of-type(4) td i{
+    background:#6DB0FD;
+}
+.content .shareholders01 tbody tr{
+    background: none;
+}
+.content .shareholders01 tr:nth-of-type(1){
+    background: #1B1C20;
+}
+.content .shareholders01 tr:nth-of-type(2){
+    background: rgba(74,152,255,0.1);
+}
+.content .shareholders01 tr:nth-of-type(3){
+    background: rgba(74,152,255,0.06);
+}
+.content .shareholders01 tr:nth-of-type(4){
+    background: rgba(74,152,255,0.04);
+}
+.shareholders01 tr td,.shareholders02 tr td{
+    padding: 5px 0;
+}
+.shareholders01 .number,.shareholders02 .number{
+    text-align: center;
+}
+
+
+
+
+.financialcq tbody tr:nth-of-type(1) {
+    background: #000;
+}
+
+.financialcq tr:nth-of-type(2n+1) {
+    background: #1B1C20;
+}
+
+.financialcq tbody tr td{
+    padding: 6px 0 6px 6px;
+}
+.financialcq tbody tr td{
+    text-align: right;
+    padding-right: 6px;
+}
+.financialcq tbody tr td:first-child{
+   color: #B1B6C0;
+    text-align: left;
+}
+.financialcq tbody tr td strong{
+    color: #fff;
+}
+table.commontable.currentExecutives {
+    text-align: center;
+}
 .commontable_s
 {
     width:100%;
     border-collapse: collapse;
     margin: auto;
-    color: #999;
+    color: #fff;
+}
+
+.commontable_s tr td:first-of-type{
+    color:#B1B6C0;
+    padding-left: 2px;
 }
 
 .commontable_s tr td
 {
-    font-size: 16px;
-    height: 30px;
+    font-size: 15px;
+    /*height: 30px;*/
     /*border-bottom: 1px solid #4F595F;*/
-    padding: 10px 0;
+    /*padding: 5px 0;*/
+    padding-bottom: 13px;
+}
+
+.commontable_s tr:last-of-type td{
+    padding-bottom: 0;
 }
 
 .commontable_s .number
 {
     text-align: right;
-    padding-right: 8px;
+    padding-right: 15px;
     font-family: arial;
-    font-size: 16px;
+    font-size: 15px;
+    color: #fff;
+}
+.commontable_s .number:last-child{
+    padding-right: 5px;
 }
 .commontable_s tr:nth-of-type(2n){
-    background: #1d1618;
+    /*background: #1d1618;*/
 }
 .commontable_s .borderleft{
-    border-left: 1px solid #eee;
-    padding-left: 8px;
+    border-left: 1px solid #202125;
+    padding-left: 15px;
+}
+.commontable_s .borderleft:first-of-type,.commontable_s .borderleft:last-of-type{
+    padding: 0;
 }
 .commontable_r
 {
     width:100%;
-    color: #999;
+    color: #fff;
     border-collapse: collapse;
     margin: auto;
 }
 .commontable_r tr td
 {
-    font-size: 16px;
-    height: 30px;
-    padding: 5px 0;
+    font-size: 15px;
+    padding: 3px 0;
+    line-height: 23px;
+    /*padding: 10px 0;*/
 }
 .commontable_r tr:nth-of-type(2n){
-     background: #1d1618;
+     /*background: #1d1618;*/
 }
 .commontable_r tr td:nth-of-type(2n+1){
-    width: 77px;
+    width: 85px;
 }
+.commontable_r tr td:nth-of-type(3){
+    /*border-left: 1px solid #eee;*/
+    padding-left: 5px;
+}
+.moneycq tr:nth-of-type(2n+1){
+    background: none;
+}
+
+.moneycq tr:first-of-type td{
+    font-size: 12px;
+}
+.moneycq tr:first-of-type td{
+    padding: 0px 0 0px 6px;
+}
+
+.transaction{
+    font-family: 'Microsoft YaHei' , SimSun;
+}
+
+
+
 
 .titletable
 {
@@ -305,24 +526,25 @@
 
 .titletable tr td
 {
-    font-size: 16px;
-    height: 35px;
+    font-size: 14px;
+    /*height: 35px;*/
     text-align: center;
     padding: 3px 0;
 }
 .titletable tr td span
 {
-    height: 35px;
-    line-height: 35px;
-    width: 80%;
-    border: 1px solid #eee;
+    height: 32px;
+    line-height: 32px;
+    width: 91%;
+    border: 1px solid #333438;
     text-align: center;
     display:inline-block;
     cursor: pointer;
 }
 .titletable .reclick{
-    border: 1px solid #F65B17;
-    color: #F65B17;
+    border: 1px solid #FF5A00;
+    color: #FF5A00;
+    /*font-size: 15px;*/
 }
 .commontable_ah
 {
@@ -475,14 +697,17 @@
 .bottomfooter{
     width: 100%;
     height: 35px;
-    position: fixed;
-    bottom: -3px;
-    margin: 0;
-    padding: 0;
+    /*position: fixed;*/
+    /*bottom: -3px;*/
+    padding-left: 1px;
+    margin-top: 20px;
+    /*margin: 0;*/
+    /*padding: 0;*/
     display: none;
+    /*z-index: 100;*/
 }
 .bottomfooter ul{
-    width: 98%;
+    width: 100%;
     height: 35px;
     overflow:hidden;
     font-size: 16px;
@@ -492,8 +717,8 @@
 .bottomfooter ul li{
     list-style: none;
     float: left;
-    width:24%;
-    color: #f75a16;
+    width:24.6%;
+    color: #FF5900;
     text-align: center;
     height: 30px;
     line-height: 30px;
@@ -506,29 +731,82 @@
     border: 1px solid #f75a16;
 }
 .bottomfooter .active{
-    background:#f75a16 ;
+    background:#FF5900 ;
     color: #fff;
 }
 .datebar{
     text-align: center;
     font-weight: bold;
-    line-height: 50px;
+    line-height: 30px;
+}
+.shareholders{
+    font-weight: bold;
+    text-align: left;
+    margin: 0;
+    font-size: 16px;
+    color: #ECEAEA;
+    position: relative;
+    top: -6px;
+}
+.shareholders span{
+    float: right;
+    font-size: 13px;
+    color: #858C9E;
+    font-weight: normal;
 }
 .subtitle{
     padding: 5px 0;
     line-height: 18px;
-    font-size: 14px;
+    font-size: 13px;
+    /*font-weight: bold;*/
+    color: #fff;
+    text-align: center;
+}
+.subtitlecq{
+    color: #858C9E;
+}
+.subtitlecq span:first-of-type{
+    float: left;
+    padding-left: 3px;
+    text-align: left;
+}
+
+
+.transaction tr td:first-of-type{
     font-weight: bold;
+}
+.transaction tr td{
+    font-size: 15px;
+}
+.transaction tr:first-of-type td{
+    padding: 5px 0 5px 6px;
+    line-height: 18px;
+    font-weight: normal;
+    font-size: 14px;
+    text-align: center;
+}
+.transaction .number{
+    text-align: center;
+}
+
+
+
+
+.subtitlecq span:last-of-type{
+    float: right;
+    padding-right: 3px;
 }
 .remind_connent{
     width: 100%;
     margin-top: 20px;
-
+    position: relative;
+    left: 10px;
 }
 .event{
     padding-left: 14px;
-    border-left: 1px solid #e4e7ec;
+    border-left: 1px solid #333438;
     position: relative;
+    padding-bottom: 10px;
 }
 .event:before{
     content: '';
@@ -545,11 +823,14 @@
     top: -10px;
     position: relative;
 }
+.timer strong{
+    color:#ddd;
+}
 .event p{
     font-size: 14px;
     line-height: 20px;
-    padding: 5px 0;
-    /*color: #5e6678;*/
+    padding: 5px 5px 0 0;
+    color:#B1B6C0 ;
     margin: 0 0;
     top: -10px;
     position: relative;
@@ -557,3 +838,32 @@
 .izl-rmenu{position:fixed;right:0px;top:100px;z-index:999;}
 .izl-rmenu .btn{width:40px;height:133px;cursor:pointer;position:relative;}
 .izl-rmenu .btn-top{background:url(../../images/return_top.png) 0px 0px no-repeat;display:none; background-size:40px 133px;}
+
+
+.tooltipUnit span{
+    font-size: 15px;
+    color: #aeb3bf;
+    margin-right: 25px;
+
+}
+.tooltipUnit span i{
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ff5900;
+    margin-right: 7px;
+    vertical-align: middle;
+    position: relative;
+    top: -2px;
+}
+.tooltipUnit span:nth-of-type(2) i{
+    background: #0DB14B;
+}
+.tooltipUnit span:last-of-type{
+    margin-right: 0;
+}
+
+.tooltipUnit span:last-of-type{
+    float: right;
+}

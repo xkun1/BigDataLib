@@ -1,11 +1,12 @@
 ﻿var INITIALIZEDMENU = false;
-var ALLMENUS;
+var ALLMENUS = null;
 var FIRSTMENUS;
 var CURRENTSECONDMENUS;
 var TIMESTAMP;
+var getnumbers = 0; //接口请求次数
+var storageTimes = 1000 * 60 * 20; //缓存生存时间
 
-$(function () {
-
+function defaultOnload() {
     if (DEFAULTCOUNT > 0) SECONDLOADED = false;
 
     if (PARAM_QL == 1) {
@@ -22,8 +23,7 @@ $(function () {
         if (PARAM_SID.toUpperCase() == "GG004") {
             $("#menu .about").attr("href", "https://robot.gf.com.cn/#/diagnosis?exchange={0}&code={1}&from=f10".format(PARAM_TRADEEXCHANGE, PARAM_TRADECODE));
         }
-    }
-    else if (PARAM_FID == FUNCTION_SECU_DIAG) {
+    } else if (PARAM_FID == FUNCTION_SECU_DIAG) {
         $("#menu .about").removeClass("default");
         $("#menu .about").addClass("f10");
 
@@ -31,7 +31,8 @@ $(function () {
         $("#menu .about").attr("target", "_self");
     }
 
-    GetData(CurrentParsedUrl.param("ids"), DEFAULTCOUNT);
+    GetData(PARAM_IDS, DEFAULTCOUNT);
+
 
     /*
      $("#menu").on("drag", function (e) {
@@ -129,27 +130,78 @@ $(function () {
      //$("#menulist").css("left", val + "px");
      });
      */
+}
+$(function () {
+
 });
 
-
 function GetData(id, count) {
-    if (!id) id = "";
-    Globals.Loading(true);
-    var url = GETDATAURL.format(PARAM_C, id, INITIALIZEDMENU ? 1 : 0, PARAM_CID, PARAM_FID);
-    if (count && count > 0) {
-        url = url + "&count={0}".format(count);
+    var cont = null;
+    if (!id) {
+        var currentMenu = $.cookie('currentMenu');
+        if (currentMenu) {
+            id = currentMenu;
+        } else {
+            id = "";
+        }
     }
-    DataService.GetData(url, true, "GET", "", function (data) {
-        Generate(data, id);
-    }, "jsonp");
+    //获取缓存
+    if (typeof(Storage) !== "undefined") {
+        cont = JSON.parse(localStorage.getItem(PARAM_C + PARAM_CID + PARAM_FID + id));
+    }
+    if (cont != null && cont != "" && new Date().getTime() - cont.time < storageTimes) {
+        getnumbers = 0;
+        Generate(cont.data, id);
+    } else {
+        Globals.Loading(true);
+        var url = GETDATAURL.format(PARAM_C, id, INITIALIZEDMENU ? 1 : 0, PARAM_CID, PARAM_FID);
+        if (count && count > 0) {
+            url = url + "&count={0}".format(count);
+        }
+        if (params != null && params != "") {
+            url = url + "&appVer={0}".format(params.appVer) + "&appType={0}".format(params.appType) + "&deviceID={0}".format(params.deviceID)+ "&phoneNum={0}".format(params.phoneNum);
+        }
+        DataService.GetData(url, true, "GET", "", function (data) {
+            if (data.hasOwnProperty("error")) {
+                if (getnumbers < 10) {
+                    urlEach();//地址重定义
+                    GetData(id, count);
+                    getnumbers++;
+                } else {
+                    $("body").append(data.error);
+                    Globals.Loading(false);
+                }
+            } else {
+                getnumbers = 0;
+                Generate(data, id);
+                //生成本地缓存
+                if (typeof(Storage) !== "undefined") {
+                    var curTime = new Date().getTime();
+                    localStorage.setItem(PARAM_C + PARAM_CID + PARAM_FID + id, JSON.stringify({
+                        data: data,
+                        time: curTime
+                    }));
+                    if (data.hasOwnProperty("classes")) {
+                        localStorage.setItem(PARAM_C + PARAM_CID + PARAM_FID + "classes", JSON.stringify(data.classes));
+                    }
+                }
+            }
+
+        }, "jsonp");
+    }
 }
 
 function Generate(data, id) {
     $("#main .summary").remove();
     $("#main .module").not("#moduletemplate").remove();
     $("#quicklaunch a").remove();
+    if (typeof(Storage) !== "undefined") {
+        ALLMENUS = JSON.parse(localStorage.getItem(PARAM_C + PARAM_CID + PARAM_FID + "classes"));
+    }
     if (!INITIALIZEDMENU) {
-        ALLMENUS = data.classes;
+        if (ALLMENUS == null) {
+            ALLMENUS = data.classes;
+        }
         //main menus
         FIRSTMENUS = $.grep(ALLMENUS, function (val, key) {
             if (val.pid == 0 && val.on_menu != "false")
@@ -159,10 +211,8 @@ function Generate(data, id) {
         if (FIRSTMENUS.length == 1) {
             $("#menu #menulist").hide();
         }
-
         //MainMenu
         $.each(FIRSTMENUS, function (i, obj) {
-
             if (id != "") {
                 if (obj.id == id) {
                     $("#menulist").append("<a href=\"#\" val=\"{1}\" ind=\"{2}\" class=\"selected\">{0}</a>".format(obj.caption, obj.id, i));
@@ -192,7 +242,6 @@ function Generate(data, id) {
         } else if (PARAM_C.toUpperCase() == "SJTSZX.OT") {
             $("#header .t1").text("特色资讯");
         }
-
         //bind menu event
         $("#menulist a").not(".about").bind("click", function () {
             $("#menulist a").removeClass("selected");
@@ -201,6 +250,7 @@ function Generate(data, id) {
             //$(this).blur();
             GetData($(this).attr("val"));
             SetToCenter(this);
+            $.cookie('currentMenu', $(this).attr("val"));
 
         });
 
@@ -210,6 +260,7 @@ function Generate(data, id) {
 
         INITIALIZEDMENU = true;
     }
+
     CURRENTSECONDMENUS = $.grep(ALLMENUS, function (val, key) {
         if ((id == "" && val.pid == FIRSTMENUS[0].id) || val.pid == id)
             return true;
@@ -234,7 +285,9 @@ function Generate(data, id) {
             if (i == CURRENTSECONDMENUS.length - 1) {
                 template.css("background-image", "none");
             }
-
+            if (obj.isShowTitle) {
+                template.find(".category").hide();
+            }
 
             if (data.contents) {
                 for (var m = 0; m < data.contents.length; m++) {
@@ -282,6 +335,9 @@ function Generate(data, id) {
             template.find(".category").text(obj.caption);
             template.find(".category").attr("val", obj.id);
             template.css("background-image", "none");
+            if (obj.isShowTitle) {
+                template.find(".category").hide();
+            }
 
             if (data.contents) {
                 for (var m = 0; m < data.contents.length; m++) {
@@ -315,106 +371,75 @@ function Generate(data, id) {
 
     }
 
-    $("#quicklaunch a").bind("click", function () {
-        var category = $(".category[val={0}]".format($(this).attr("val")));
-        $("html,body").animate({scrollTop: category.offset().top - 70}, 600, function () {
-            var current = category.css("background-color");
-
-            category.parent().animate({backgroundColor: "#e8e8e8"}, 100).animate({backgroundColor: current}, 1000);
-        });
-    });
-
     $(".list .item").bind("click", function () {
-        $("#newpage").show();
-        $("#newpage").siblings().hide();
         var id = $(this).attr("id");
+        var type = $(this).attr("type");
         if (id != '-' && id != '') {
-            Globals.Loading(true);
-            DataService.GetData(GETDETAILINFOURL.format(DEFAULTDETAILDATABASE, parseInt(Math.round(id)), "CONT,TIT,INFO_SOUR,FILENAME,ID,PUB_DT,DETAIL_ID"), true, "GET", "", function (data) {
-                if(data.TIT!=null&&data.TIT!=""&&data.TIT!=undefined) {
-                    $("#newpage h1").html(data.TIT);
+            if (params != "" && params != null && params.hasOwnProperty("deviceID")) {
+                var shareUrl = "/detail.html?id=" + id;
+                if (type != null && type != undefined && type != "") {
+                    shareUrl += "&type=" + type;
                 }
-                if(data.PUB_DT!=null){
-                    var html_text="";
-                    if(data.PUB_DT.sec!=null&&data.PUB_DT.sec!=""&&data.PUB_DT.sec!=undefined) {
-                        var unixTimestamp = new Date(data.PUB_DT.sec* 1000);
-                        html_text+=unixTimestamp.toLocaleString();
+                openThirdPartyWebInSubPage(GETDETAILINFOURL.format(DEFAULTDETAILDATABASE, parseInt(Math.round(id)), "CONT,TIT,INFO_SOUR,FILENAME,ID,PUB_DT,DETAIL_ID"), shareUrl, type)
+            } else {
+                $("#newpage").show();
+                $("#newpage").siblings().hide();
+                Globals.Loading(true);
+                DataService.GetData(GETDETAILINFOURL.format(DEFAULTDETAILDATABASE, parseInt(Math.round(id)), "CONT,TIT,INFO_SOUR,FILENAME,ID,PUB_DT,DETAIL_ID"), true, "GET", "", function (data) {
+                    if (data.hasOwnProperty("error")) {
+                        if (getnumbers < 10) {
+                            getnumbers++;
+                            urlEach();//地址重定义
+                            $(this).click();
+                        } else {
+                            $("body").append(data.error);
+                            Globals.Loading(false);
+                        }
+                    } else {
+                        getnumbers = 0;
+
+                        if (data.TIT != null && data.TIT != "") {
+                            $("#newpage h1").html(data.TIT);
+                        }
+                        if (data.PUB_DT != null) {
+                            var html_text = "";
+                            if (data.PUB_DT.sec != null && data.PUB_DT.sec != "") {
+                                var unixTimestamp = new Date(data.PUB_DT.sec * 1000);
+                                html_text += unixTimestamp.toLocaleString();
+                            }
+                            if (data.INFO_SOUR != null && data.INFO_SOUR != "") {
+                                html_text += "　" + data.INFO_SOUR;
+                            }
+                            $("#newpage .time").html(html_text);
+                        }
+                        if (data.CONT != null && data.CONT != "") {
+                            var cont = data.CONT.replace(/(\r\n)|(\n)/g, "<br>").replace(/\s/g, "&nbsp;");
+                            $("#newpage .article").html(cont);
+                        }
+                        if (data.FILENAME != null && data.FILENAME != "") {
+                            if (type == "blt") {
+                                $("#newpage .time").append("　 <a href='" + ATTACHMENT.format(data.FILENAME) + "'>打开附件文件</a>");
+                            } else if (type == "rpt") {
+                                $("#newpage .time").append("　 <a href='" + ATTACHMENT_REPORT.format(data.FILENAME) + "'>打开附件文件</a>");
+                            }
+                        }
                     }
-                    if(data.INFO_SOUR!=null&&data.INFO_SOUR!=""&&data.INFO_SOUR!=undefined) {
-                        html_text+="　"+data.INFO_SOUR;
-                    }
-                    $("#newpage .time").html(html_text);
-                }
-                if(data.CONT!=null&&data.CONT!=""&&data.CONT!=undefined){
-                    var cont=data.CONT.replace(/(\r\n)|(\n)/g,"<br>").replace(/\s/g,"&nbsp;");
-                    $("#newpage .article").html(cont);
-                }
-                if(data.FILENAME!=null&&data.FILENAME!=""&&data.FILENAME!=undefined){
-                    $("#newpage .time").append("　 <a href='" + ATTACHMENT_REPORT.format(data.FILENAME) + "'>打开附件文件</a>");
-                }
-                Globals.Loading(false);
-            }, "jsonp");
+                    Globals.Loading(false);
+                }, "jsonp");
+            }
+
         }
-    });
 
-    $(".showorhide").bind("click", function () {
-        var writing = $(this).attr("type");
-        if (writing == "hide") {
-            $(this).attr("type", "show");
-            $(this).find("i:eq(0)").hide();
-            $(this).find("i:eq(1)").show();
-        } else {
-            $(this).attr("type", "hide");
-            $(this).find("i:eq(0)").show();
-            $(this).find("i:eq(1)").hide();
-            $("#izl_rmenu .btn-top").click();
+    });
+    if (params != "" && params != null && params.hasOwnProperty("appType")) {
+        //Android/iOS客户端类型判断
+        if (params.appType == "android") {
+            KDS_Native.setCurrentWebPageHeight($("body").height());
+        } else if (params.appType == "ios") {
+            location.href = "KDS_Native://setCurrentWebPageHeight:" + $("body").height();
         }
-        var comtable = $(this).parent().prev();
-        console.log(comtable.html())
-        comtable.each(function () {
-            $(this).find(".signhide").toggleClass("hide");
-        });
-    });
 
-    $(".more").bind("click", function () {
-        var moreClick = $(this);
-        if (moreClick.parent().index() == 0) {
-            moreClick.addClass("hide");
-            moreClick.parent().next().find(".more").removeClass("hide");
-            moreClick.parents(".morefooter").siblings().find("li").each(function (i, obj) {
-                if (i > 9) {
-                    if (!$(obj).hasClass("hide"))
-                        $(obj).addClass("hide");
-                }
-            });
-        } else if (moreClick.parent().index() == 1) {
-            moreClick.parent().prev().find(".more").removeClass("hide");
-            var more = moreClick.parents(".morefooter").siblings().find(".hide");
-            more.each(function (i, obj) {
-                if (i < 11) {
-                    $(obj).removeClass("hide");
-                    if (i == more.length - 1) {
-                        moreClick.addClass("hide");
-                    }
-                }
-            });
-        }
-    });
-
-    $(".eventstitle").bind("click", function () {
-        $(this).parent().parent().next().show();
-        $(".eventsitem").hide();
-        $("html,body").animate({scrollTop: $(this).parent().parent().parent().offset().top - 80}, 10);
-    });
-
-    $("#newpage .close").bind("click", function () {
-        $("#newpage h1").html("");
-        $("#newpage .time").html("");
-        $("#newpage .article").html("");
-        $("#newpage").siblings().show();
-        $(this).parent().hide();
-        Globals.Loading(false);
-    });
+    }
     Globals.Loading(false);
 
 }

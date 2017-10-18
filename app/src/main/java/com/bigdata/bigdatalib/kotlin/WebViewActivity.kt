@@ -26,8 +26,10 @@ class WebViewActivity : BaseActivity() {
         libraryWebView!!.setmContext(this@WebViewActivity)
         libraryWebView!!.initWebView()
 //        libraryWebView!!.loadUrl("file:///android_asset/default_jt.htm?c=000002.sz&fid=F10&istophide=0")
-        libraryWebView!!.loadUrl("file:///android_asset/default_jt.htm?c=000002.sz&cid=-3&fid=F10&istophide=1&sid=#")
+        libraryWebView!!.loadUrl("file:///android_asset/default.htm?c=000002.sz&cid=-3&fid=F10&istophide=1&sid=#")
         //        libraryWebView.loadUrl("file:///android_asset/MyHtml.html");
+        libraryWebView!!.loadUrl("javascript:callBackUserData('')");
+
     }
 
 }

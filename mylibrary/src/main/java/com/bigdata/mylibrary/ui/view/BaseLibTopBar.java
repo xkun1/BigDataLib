@@ -2,6 +2,8 @@ package com.bigdata.mylibrary.ui.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
@@ -12,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bigdata.mylibrary.R;
+import com.bigdata.mylibrary.util.LogUtils;
 
 /**
  * user:kun
@@ -52,7 +55,10 @@ public class BaseLibTopBar extends RelativeLayout {
     private LayoutParams rightParams;
     private LayoutParams textViewParams;
 
-    private TopBarClickListener topBarClickListener;
+    private TopBarLeftImgClickListener topBarLeftImgClickListener;
+    private TopBarLeftTvClickListener topBarLeftTvClickListener;
+    private TopBarRightImgClickListener topBarRightImgClickListener;
+    private TopBarRightTvClickListener topBarRightTvClickListener;
 
     public BaseLibTopBar(Context context) {
         super(context, null);
@@ -153,8 +159,8 @@ public class BaseLibTopBar extends RelativeLayout {
         topLeftText.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (topBarClickListener != null) {
-                    topBarClickListener.leftClick(v);
+                if (topBarLeftTvClickListener != null) {
+                    topBarLeftTvClickListener.leftTvClick(v);
                 }
 
             }
@@ -162,16 +168,16 @@ public class BaseLibTopBar extends RelativeLayout {
         leftImage.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (topBarClickListener != null) {
-                    topBarClickListener.leftClick(v);
+                if (topBarLeftImgClickListener != null) {
+                    topBarLeftImgClickListener.leftImgClick(v);
                 }
             }
         });
         topRightText.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (topBarClickListener != null) {
-                    topBarClickListener.rightClick(v);
+                if (topBarRightTvClickListener != null) {
+                    topBarRightTvClickListener.rightTvClick(v);
                 }
 
             }
@@ -179,8 +185,8 @@ public class BaseLibTopBar extends RelativeLayout {
         rightImage.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (topBarClickListener != null) {
-                    topBarClickListener.rightClick(v);
+                if (topBarRightImgClickListener != null) {
+                    topBarRightImgClickListener.rightImgClick(v);
                 }
             }
         });
@@ -188,22 +194,111 @@ public class BaseLibTopBar extends RelativeLayout {
 
     }
 
+
     /**
-     * 点击事件
+     * 左边的图标的点击事件
      *
-     * @param barClickListener
+     * @param topBarLeftImgClickListener
      */
-    public void setTopBarClickListener(TopBarClickListener barClickListener) {
-        this.topBarClickListener = barClickListener;
+    public void setTopBarLeftImgClickListener(TopBarLeftImgClickListener topBarLeftImgClickListener) {
+        this.topBarLeftImgClickListener = topBarLeftImgClickListener;
     }
 
+    /**
+     * 左边文字的点击事件
+     *
+     * @param topBarLeftTvClickListener
+     */
+    public void setTopBarLeftTvClickListener(TopBarLeftTvClickListener topBarLeftTvClickListener) {
+        this.topBarLeftTvClickListener = topBarLeftTvClickListener;
+    }
+
+    /**
+     * 右边的图标点击事件
+     *
+     * @param topBarRightImgClickListener
+     */
+    public void setTopBarRightImgClickListener(TopBarRightImgClickListener topBarRightImgClickListener) {
+        this.topBarRightImgClickListener = topBarRightImgClickListener;
+    }
+
+    /**
+     * 右边文字
+     *
+     * @param topBarRightTvClickListener
+     */
+    public void setTopBarRightTvClickListener(TopBarRightTvClickListener topBarRightTvClickListener) {
+        this.topBarRightTvClickListener = topBarRightTvClickListener;
+    }
+
+    /**
+     * 设置title
+     *
+     * @param titleText
+     */
     public void setTitleText(String titleText) {
-        topBarText.setText(titleText);
+        if (topBarText != null) {
+            topBarText.setText(titleText);
+        } else {
+            LogUtils.e("TopBarText is  null");
+        }
+
     }
 
-    interface TopBarClickListener {
-        void leftClick(View view);
+    /**
+     * 设置左边text
+     *
+     * @param text
+     */
+    public void setTopBarLeftText(String text) {
+        if (topRightText != null) {
+            topLeftText.setText(text);
+        } else {
+            LogUtils.e("对象为空。。。");
+        }
 
-        void rightClick(View view);
+    }
+
+    /**
+     * 设置右边
+     *
+     * @param text
+     */
+    public void setTopBarRightText(String text) {
+        if (topRightText != null) {
+            topRightText.setText(text);
+        } else {
+            LogUtils.e("对象为空。。。");
+        }
+    }
+
+    /**
+     * 设置左边图片
+     * @param barLeftImg
+     */
+    public void setTopBarLeftImg(Bitmap barLeftImg){
+        if (barLeftImg!=null){
+            leftImage.setImageBitmap(barLeftImg);
+        }
+    }
+    public void setTopBarLeftImgId(int Imgid){
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), Imgid);
+        leftImage.setImageBitmap(bitmap);
+    }
+
+    interface TopBarLeftTvClickListener {
+        void leftTvClick(View view);
+    }
+
+    interface TopBarLeftImgClickListener {
+        void leftImgClick(View view);
+    }
+
+    interface TopBarRightTvClickListener {
+        void rightTvClick(View view);
+    }
+
+    interface TopBarRightImgClickListener {
+        void rightImgClick(View view);
     }
 }

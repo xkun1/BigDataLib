@@ -1,7 +1,6 @@
 
 package com.bigdata.mylibrary.chart.data;
 
-
 import com.bigdata.mylibrary.chart.charts.ScatterChart;
 import com.bigdata.mylibrary.chart.interfaces.datasets.IScatterDataSet;
 import com.bigdata.mylibrary.chart.renderer.scatter.ChevronDownShapeRenderer;

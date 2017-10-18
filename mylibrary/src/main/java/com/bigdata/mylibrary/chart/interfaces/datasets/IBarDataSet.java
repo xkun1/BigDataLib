@@ -1,7 +1,9 @@
 package com.bigdata.mylibrary.chart.interfaces.datasets;
 
+import android.graphics.Paint;
 
 import com.bigdata.mylibrary.chart.data.BarEntry;
+
 
 /**
  * Created by philipp on 21/10/15.
@@ -45,6 +47,13 @@ public interface IBarDataSet extends IBarLineScatterCandleBubbleDataSet<BarEntry
      * @return
      */
     int getBarBorderColor();
+
+    /**
+     * 是否是画空心柱子
+     *
+     * @return
+     */
+    Paint.Style getBarPaintStyle();
 
     /**
      * Returns the alpha value (transparency) that is used for drawing the

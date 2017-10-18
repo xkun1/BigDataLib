@@ -1,7 +1,20 @@
 ﻿
 html
 {
-    font-family: 'Microsoft YaHei' , SimSun;
+    font-family: "PingFang Regular";
+    /*font-family: 'Microsoft YaHei' , SimSun;*/
+}
+
+
+@font-face {
+    font-family: "PingFang Regular";
+    src:url("../fonts/pingfang/PingFang Regular.ttf") format("truetype");
+    /*url("../fonts/pingfang/PingFang Regular.woff2") format("woff2"),*/
+    /*url("../fonts/pingfang/PingFang Regular.woff") format("woff"),*/
+    /*url("../fonts/pingfang/PingFang Regular.eot") format("embedded-opentype"),*/
+    /*url("../fonts/pingfang/PingFang Regular.svg") format("svg");*/
+    font-weight: normal;
+    font-style: normal;
 }
 
 .ucase
@@ -11,7 +24,7 @@ html
 
 #main
 {
-    margin:40px 0;
+    margin:40px 0 20px;
     min-height: 300px;
 }
 
@@ -72,19 +85,21 @@ html
 }
 #menulist .selected
 {
-    color: #ff3d00;
-    border-bottom: 2px solid #ff3d00;
+    color: #FF3D00;
+    border-bottom: 2px solid #FF3D00;
 }
 #menulist a   /*改的*/
 {
     display: inline-block;
-    color: #848b9d;
+    color: #858C9E  ;
     width: calc((100% - 4px)/5);
     margin-right: 1px;
     background: #f2f4f8;
-    font-size: 16px;
-    height: 40px;
-    line-height: 42px;
+    font-size: 14px;
+    /*height: 40px;*/
+    /*line-height: 42px;*/
+    height: 29px;
+    line-height: 30px;
     text-align: center;
     text-decoration: none;
     border-bottom: 2px solid #f2f4f8;
@@ -138,14 +153,25 @@ html
 /*底部区域*/
 #bottomarea
 {
+    color: #858c9e;
+    line-height: 20px;
     font-size: 12px;
-    color: #2f2f2f;
-    background-color: #e6e6e6;
-    line-height:18px;
-    text-align:center;
-    padding:5px 0;
-    margin: 10px 0 0 0; /*bottom: 0;     position: fixed; */
-    width: 100%;
+    padding-left: 35px;
+    background: url("../../images/warnning.png") no-repeat 15px 3px;
+    background-size: 15px 15px;
+    margin-bottom: 20px;
+    text-align: left;
+    padding-right: 10px;
+}
+.bottomarea
+{
+    color: #858c9e;
+    line-height: 20px;
+    font-size: 14px;
+    padding-left: 21px;
+    background: url("../../images/warnning.png") no-repeat 0px 2px;
+    background-size: 15px 15px;
+    text-align: left;
 }
 
 
@@ -289,13 +315,13 @@ color:#999;
 }
 
 .width5c_title{width: 80px;color: #999}
-.width5c_time{width:80px;}
+.width5c_time{width:80px;vertical-align: top;}
 
-.width5c_title1{color: #999;}
+.width5c_title1{color: #5E6678; vertical-align: top;}
 .width5c_time1{width:60px;}
 
 
-.width5c_title2{color: #006dbd}
+.width5c_title2{color: #006dbd !important;}
 
 .width7c
 {
@@ -337,11 +363,13 @@ color:#999;
 .red
 {
     color: red;
+    font-weight: bold;
 }
 
 .green
 {
     color: #15ea15;
+    font-weight: bold;
 }
 
 .arrow
@@ -364,7 +392,15 @@ color:#999;
     padding: 3px 10px 3px 3px;
     font-size: 16px;
 }
-
+.commontable td i{
+    font-style:normal;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    text-align: center;
+    color: #fff;
+}
 #header .bdcode
 {
     float: right;
@@ -500,13 +536,18 @@ text-align:right;
 }
 .morebg{
     font-size: 14px;
-    color: #0083d6;
+    color: #B1B6C0;
     margin-top: 5px;
-    width: 50%;
-    float: left;
+    /*width: 50%;*/
+    /*float: left;*/
+    background: #f8f9fb;
+    line-height: 30px;
+
 }
 .more{
     cursor: pointer;
+    font-style:normal;
+    color: #B1B6C0;
 }
 
 .report{
@@ -517,18 +558,20 @@ text-align:right;
     vertical-align: middle;
 }
 .up{
-    background: url("../../images/spirit.png") no-repeat left top;
+    background: url("../../images/up.png") no-repeat left top;
     display: inline-block;
     width: 14px;
-    height: 12px;
+    height: 14px;
     vertical-align: middle;
+    /*margin-right: 10px;*/
 }
 .down{
-    background: url("../../images/spirit.png") no-repeat -13px top;
+    background: url("../../images/down.png") no-repeat -14px top;
     display: inline-block;
     width: 14px;
-    height: 12px;
+    height: 16px;
     vertical-align: middle;
+    /*margin-right: 5px;*/
 }
 .unit{      /*改*/
     width: 100%;
@@ -538,25 +581,30 @@ text-align:right;
     font-size: 12px;
 }
 #newpage{
-    width: 90%;
+    width: 92%;
     margin: 0 auto;
     display: none;
 }
 #newpage h1{
-    font-size: 18px;
+    font-size:22px;
     line-height:30px;
     color:#000;
     padding-top: 10px;
+    font-weight: bold;
 }
 #newpage .time{
-    font-size: 13px;
+    font-size: 12px;
     color: #858c9e;
     line-height: 20px;
-    padding: 5px 0;
+    padding: 5px 0 12px 0;
+    font-family: "microsoft yahei";
 }
 #newpage .article{
-    line-height: 22px;
+    line-height:30px;
     margin-bottom: 20px;
+    color: #333;
+    font-size: 17px;
+    /*text-indent: 2em;*/
 }
 #newpage .close{
     display: inline-block;

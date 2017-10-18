@@ -496,8 +496,8 @@ text-align:right;
     font-size: 14px;
     color: #0083d6;
     margin-top: 5px;
-    width: 50%;
-    float: left;
+    /*width: 50%;*/
+    /*float: left;*/
 }
 .more{
     cursor: pointer;
@@ -510,18 +510,19 @@ text-align:right;
     display: inline-block;
     vertical-align: middle;
 }
+
 .up{
-    background: url("../../images/spirit.png") no-repeat left top;
+    background: url("../../images/up.png") no-repeat;
     display: inline-block;
     width: 14px;
-    height: 12px;
+    height: 14px;
     vertical-align: middle;
 }
 .down{
-    background: url("../../images/spirit.png") no-repeat -13px top;
+    background: url("../../images/down.png") no-repeat;
     display: inline-block;
     width: 14px;
-    height: 12px;
+    height: 16px;
     vertical-align: middle;
 }
 .unit{

@@ -182,6 +182,7 @@ public class CombinedData extends BarLineScatterCandleBubbleData<IBarLineScatter
         if (highlight.getDataIndex() >= dataObjects.size())
             return null;
 
+
         ChartData data = dataObjects.get(highlight.getDataIndex());
 
         if (highlight.getDataSetIndex() >= data.getDataSetCount())

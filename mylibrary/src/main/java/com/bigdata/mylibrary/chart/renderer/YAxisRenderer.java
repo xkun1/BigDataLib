@@ -27,7 +27,7 @@ public class YAxisRenderer extends AxisRenderer {
 
         this.mYAxis = yAxis;
 
-        if(mViewPortHandler != null) {
+        if (mViewPortHandler != null) {
 
             mAxisLabelPaint.setColor(Color.BLACK);
             mAxisLabelPaint.setTextSize(Utils.convertDpToPixel(10f));
@@ -127,6 +127,7 @@ public class YAxisRenderer extends AxisRenderer {
     }
 
     protected Path mRenderGridLinesPath = new Path();
+
     @Override
     public void renderGridLines(Canvas c) {
 
@@ -188,6 +189,7 @@ public class YAxisRenderer extends AxisRenderer {
     }
 
     protected float[] mGetTransformedPositionsBuffer = new float[2];
+
     /**
      * Transforms the values contained in the axis entries to screen pixels and returns them in form of a float array
      * of x- and y-coordinates.
@@ -196,7 +198,7 @@ public class YAxisRenderer extends AxisRenderer {
      */
     protected float[] getTransformedPositions() {
 
-        if(mGetTransformedPositionsBuffer.length != mYAxis.mEntryCount * 2){
+        if (mGetTransformedPositionsBuffer.length != mYAxis.mEntryCount * 2) {
             mGetTransformedPositionsBuffer = new float[mYAxis.mEntryCount * 2];
         }
         float[] positions = mGetTransformedPositionsBuffer;
@@ -244,6 +246,7 @@ public class YAxisRenderer extends AxisRenderer {
     protected Path mRenderLimitLines = new Path();
     protected float[] mRenderLimitLinesBuffer = new float[2];
     protected RectF mLimitLineClippingRect = new RectF();
+
     /**
      * Draws the LimitLines associated with this axis to the screen.
      *
@@ -292,9 +295,12 @@ public class YAxisRenderer extends AxisRenderer {
             // c.drawLines(pts, mLimitLinePaint);
 
             String label = l.getLabel();
+            //画右边的标签
+            String rightLabel = l.getmRight();
 
             // if drawing the limit-value label is enabled
             if (label != null && !label.equals("")) {
+
 
                 mLimitLinePaint.setStyle(l.getTextStyle());
                 mLimitLinePaint.setPathEffect(null);
@@ -309,6 +315,7 @@ public class YAxisRenderer extends AxisRenderer {
 
                 final LimitLine.LimitLabelPosition position = l.getLabelPosition();
 
+
                 if (position == LimitLine.LimitLabelPosition.RIGHT_TOP) {
 
                     mLimitLinePaint.setTextAlign(Align.RIGHT);
@@ -317,21 +324,31 @@ public class YAxisRenderer extends AxisRenderer {
                             pts[1] - yOffset + labelLineHeight, mLimitLinePaint);
 
                 } else if (position == LimitLine.LimitLabelPosition.RIGHT_BOTTOM) {
-
                     mLimitLinePaint.setTextAlign(Align.RIGHT);
                     c.drawText(label,
                             mViewPortHandler.contentRight() - xOffset,
                             pts[1] + yOffset, mLimitLinePaint);
 
+                    //自定义显示左右两边
                 } else if (position == LimitLine.LimitLabelPosition.LEFT_TOP) {
-
                     mLimitLinePaint.setTextAlign(Align.LEFT);
                     c.drawText(label,
                             mViewPortHandler.contentLeft() + xOffset,
                             pts[1] - yOffset + labelLineHeight, mLimitLinePaint);
+                    mLimitLinePaint.setTextAlign(Align.RIGHT);
+                    c.drawText(rightLabel, mViewPortHandler.contentRight() - xOffset,
+                            pts[1] - yOffset + labelLineHeight, mLimitLinePaint);
+                } else if (position == LimitLine.LimitLabelPosition.LEFT_BOTTOM) {
+                    mLimitLinePaint.setTextAlign(Align.RIGHT);
+                    c.drawText(rightLabel,
+                            mViewPortHandler.contentRight() - xOffset,
+                            pts[1] + yOffset, mLimitLinePaint);
 
+                    mLimitLinePaint.setTextAlign(Align.LEFT);
+                    c.drawText(label,
+                            mViewPortHandler.offsetLeft() + xOffset,
+                            pts[1] + yOffset, mLimitLinePaint);
                 } else {
-
                     mLimitLinePaint.setTextAlign(Align.LEFT);
                     c.drawText(label,
                             mViewPortHandler.offsetLeft() + xOffset,

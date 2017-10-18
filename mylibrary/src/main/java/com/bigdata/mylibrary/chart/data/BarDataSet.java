@@ -2,6 +2,7 @@
 package com.bigdata.mylibrary.chart.data;
 
 import android.graphics.Color;
+import android.graphics.Paint;
 
 import com.bigdata.mylibrary.chart.interfaces.datasets.IBarDataSet;
 
@@ -24,6 +25,8 @@ public class BarDataSet extends BarLineScatterCandleBubbleDataSet<BarEntry> impl
     private float mBarBorderWidth = 0.0f;
 
     private int mBarBorderColor = Color.BLACK;
+
+    protected Paint.Style mBarPaintStyle = Paint.Style.FILL;
 
     /**
      * the alpha value used to draw the highlight indicator bar
@@ -207,6 +210,19 @@ public class BarDataSet extends BarLineScatterCandleBubbleDataSet<BarEntry> impl
         return mBarBorderColor;
     }
 
+    @Override
+    public Paint.Style getBarPaintStyle() {
+        return mBarPaintStyle;
+    }
+
+    public Paint.Style getmBarPaintStyle() {
+        return mBarPaintStyle;
+    }
+
+    public void setmBarPaintStyle(Paint.Style mBarPaintStyle) {
+        this.mBarPaintStyle = mBarPaintStyle;
+    }
+
     /**
      * Set the alpha value (transparency) that is used for drawing the highlight
      * indicator bar. min = 0 (fully transparent), max = 255 (fully opaque)
@@ -235,4 +251,5 @@ public class BarDataSet extends BarLineScatterCandleBubbleDataSet<BarEntry> impl
     public String[] getStackLabels() {
         return mStackLabels;
     }
+
 }

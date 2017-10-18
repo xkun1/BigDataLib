@@ -64,7 +64,14 @@ DataService = new function () {
                 async: isasync,
                 success: succeeded,
                 error: function (request, status, error) {
-                    $("body").append(error);
+                    if(getnumbers<10){
+                        urlEach();//地址重定义
+                        GetData("", DEFAULTCOUNT);
+                        getnumbers++;
+                    }else {
+                        $("body").append(error);
+                        Globals.Loading(false);
+                    }
                 }
             });
         } else {

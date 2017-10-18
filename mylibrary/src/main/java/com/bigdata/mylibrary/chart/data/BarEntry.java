@@ -138,6 +138,8 @@ public class BarEntry extends Entry {
         calcRanges();
     }
 
+
+
     /**
      * Returns an exact copy of the BarEntry.
      */

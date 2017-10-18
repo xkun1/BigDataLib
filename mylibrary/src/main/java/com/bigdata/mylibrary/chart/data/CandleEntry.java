@@ -6,7 +6,7 @@ import android.graphics.drawable.Drawable;
 
 /**
  * Subclass of Entry that holds all values for one entry in a CandleStickChart.
- * 
+ *
  * @author Philipp Jahoda
  */
 @SuppressLint("ParcelCreator")
@@ -26,7 +26,7 @@ public class CandleEntry extends Entry {
 
     /**
      * Constructor.
-     * 
+     *
      * @param x The value on the x-axis
      * @param shadowH The (shadow) high value
      * @param shadowL The (shadow) low value
@@ -106,7 +106,7 @@ public class CandleEntry extends Entry {
     /**
      * Returns the overall range (difference) between shadow-high and
      * shadow-low.
-     * 
+     *
      * @return
      */
     public float getShadowRange() {
@@ -115,7 +115,7 @@ public class CandleEntry extends Entry {
 
     /**
      * Returns the body size (difference between open and close).
-     * 
+     *
      * @return
      */
     public float getBodyRange() {
@@ -141,7 +141,7 @@ public class CandleEntry extends Entry {
 
     /**
      * Returns the upper shadows highest value.
-     * 
+     *
      * @return
      */
     public float getHigh() {
@@ -154,7 +154,7 @@ public class CandleEntry extends Entry {
 
     /**
      * Returns the lower shadows lowest value.
-     * 
+     *
      * @return
      */
     public float getLow() {
@@ -167,7 +167,7 @@ public class CandleEntry extends Entry {
 
     /**
      * Returns the bodys close value.
-     * 
+     *
      * @return
      */
     public float getClose() {
@@ -180,7 +180,7 @@ public class CandleEntry extends Entry {
 
     /**
      * Returns the bodys open value.
-     * 
+     *
      * @return
      */
     public float getOpen() {

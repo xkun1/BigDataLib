@@ -5,15 +5,22 @@ var BASEHOST = "http://test.f10.chinabigdata.com";
 var BASEURL = CurrentParsedUrl.attr("base");
 var CURRENTFILE = CurrentParsedUrl.attr("file");
 var CURRENTDIR = CurrentParsedUrl.attr("directory");
-var GETDATAURL = "http://test.f10.chinabigdata.com/php/get_f10.php?c={0}&ids={1}&nomenu={2}&cid={3}&fid={4}";
-var GETSECUINFOURL = "http://test.f10.chinabigdata.com/php/get_secu.php?c={0}";
-var GETDETAILINFOURL = "http://test.f10.chinabigdata.com/php/get_rec.php?c={0}&id={1}&p={2}";
-var GETBDCODEURL = "http://test.f10.chinabigdata.com/php/get_secu_by_code.php?c={0}";
+//var GETDATAURL = "http://test.f10.chinabigdata.com/php/get_f10.php?c={0}&ids={1}&nomenu={2}&cid={3}&fid={4}";
+//var GETSECUINFOURL = "http://test.f10.chinabigdata.com/php/get_secu.php?c={0}";
+//var GETDETAILINFOURL = "http://f10.chinabigdata.com/php/get_rec.php?c={0}&id={1}&p={2}";
+//var GETBDCODEURL = "http://test.f10.chinabigdata.com/php/get_secu_by_code.php?c={0}";
+
+//服务器地址
+var GETDATAURL = BASEHOST + "/php/get_f10.php?c={0}&ids={1}&nomenu={2}&cid={3}&fid={4}";
+var GETSECUINFOURL = BASEHOST + "/php/get_secu.php?c={0}";
+var GETBDCODEURL = BASEHOST + "/php/get_secu_by_code.php?c={0}";
+var GETDETAILINFOURL = BASEHOST + "/php/get_rec.php?c={0}&id={1}&p={2}";
 
 //var GETDATAURL = CURRENTDIR + "php/get_f10.php?c={0}&ids={1}&nomenu={2}&cid={3}&fid={4}";
 //var GETSECUINFOURL = CURRENTDIR + "php/get_secu.php?c={0}";
 //var GETBDCODEURL = CURRENTDIR + "php/get_secu_by_code.php?c={0}";
 //var GETDETAILINFOURL = BASEHOST + "/php/get_rec.php?c={0}&id={1}&p={2}";
+
 
 //var DEFAULTDETAILDATABASE = "BD_F10_ANN_TXT_1";
 var DEFAULTDETAILDATABASE = "BD_F10_ANN_TXT_DETAIL";
@@ -30,26 +37,27 @@ var PARAM_HIDETOPBAR = CurrentParsedUrl.param("istophide") == null ? (PARAM_CID 
 var PARAM_TRADECODE = "";
 var PARAM_TRADEEXCHANGE = "";
 
-var tmp_code_arr = PARAM_C.split('.');
-if (tmp_code_arr.length == 2) {
-    PARAM_TRADECODE = tmp_code_arr[0];
-    PARAM_TRADEEXCHANGE = tmp_code_arr[1];
-}
 
 var FUNCTION_F10 = "F10";
 var FUNCTION_SECU_DIAG = "SECU_DIAG";
 var FUNCTION_SECU_SCRN = "SECU_SCRN";
 var FUNCTION_BD_INFO = "BD_INFO";
+var params;
 
-if (PARAM_C.toLowerCase() == "stksel.ot") {
-    PARAM_C = "STKSEL.ot";
-}
+function utilitiesOnload() {
+    var tmp_code_arr = PARAM_C.split('.');
+    if (tmp_code_arr.length == 2) {
+        PARAM_TRADECODE = tmp_code_arr[0];
+        PARAM_TRADEEXCHANGE = tmp_code_arr[1];
+    }
+    if (PARAM_C.toLowerCase() == "stksel.ot") {
+        PARAM_C = "STKSEL.ot";
+    }
 
-if (PARAM_C.toLowerCase() == "sjtszx.ot") {
-    PARAM_C = "SJTSZX.ot";
-}
+    if (PARAM_C.toLowerCase() == "sjtszx.ot") {
+        PARAM_C = "SJTSZX.ot";
+    }
 
-$(function () {
     var code = PARAM_C.toUpperCase();
     var firstCode = code.substr(0, 1);
     var exchCode = code.substr(code.length - 3, 3);
@@ -62,19 +70,17 @@ $(function () {
     if (PARAM_SID.toLowerCase() == "hj020") {
         if (PARAM_FID == FUNCTION_F10 && ((exchCode == ".SH" && firstCode == "6") || (exchCode == ".SZ" && (firstCode == "0" || firstCode == "3")))) {
             PARAM_CID = -3;
-        }
-        else {
+        } else {
             PARAM_CID = -2;
         }
     }
 
     //判断是否有个股诊断按钮，以及根据客户定制适配CID
     if (PARAM_FID == FUNCTION_F10) {
-        if ((exchCode == ".SH" && firstCode == "6") || (exchCode == ".SZ" && (firstCode == "0" || firstCode == "3"))) {
+        if (((exchCode == ".SH" && firstCode == "6") || (exchCode == ".SZ" && (firstCode == "0" || firstCode == "3"))) && PARAM_CID != -3) {
             $("#menu .zd_f10").show();
             $("#menulist").css("margin-right", "50px");
-        }
-        else {
+        } else {
             $("#menu .zd_f10").hide();
             $("#menulist").css("margin-right", "0px");
         }
@@ -87,8 +93,7 @@ $(function () {
         });
 
         Globals.BodyKeyevent();
-    }
-    else if (htmlfile == "default.htm" && PARAM_FID == FUNCTION_SECU_DIAG) {
+    } else if (htmlfile == "default.htm" && PARAM_FID == FUNCTION_SECU_DIAG) {
         //$("#header .logo").bind("click", function () {
         //   location.href = "home-2.htm?c={0}&cid={1}&fid={2}&istophide={3}".format(PARAM_C, PARAM_CID, PARAM_FID,PARAM_HIDETOPBAR);
         //});
@@ -97,24 +102,19 @@ $(function () {
         $("#header .logo").hide();
         $("#header").css("text-align", "center");
 
-    }
-    else if (htmlfile == "default.htm" && (PARAM_FID == FUNCTION_SECU_SCRN || PARAM_FID == FUNCTION_BD_INFO)) {
+    } else if (htmlfile == "default.htm" && (PARAM_FID == FUNCTION_SECU_SCRN || PARAM_FID == FUNCTION_BD_INFO)) {
         $("#header .logo").hide();
         $("#header .bdcode").hide();
         $("#header").css("text-align", "center");
         $("#header .t1").css("line-height", "40px");
-    }
-    else if (htmlfile == "default.htm" && PARAM_FID == FUNCTION_F10) {
+    } else if (htmlfile == "default.htm" && PARAM_FID == FUNCTION_F10) {
         $("#header .logo").hide();
         $("#header").css("text-align", "center");
-    }
-
-    else {
+    } else {
         $("#header .logo").bind("click", function () {
             //location.href = "home-0.htm?c={0}&cid={1}&fid={2}&istophide={3}&sid={4}".format(PARAM_C, PARAM_CID, PARAM_FID, PARAM_HIDETOPBAR, PARAM_SID);
         });
         Globals.BodyKeyevent();
-
     }
 
     var title = CurrentParsedUrl.param("title");
@@ -156,17 +156,18 @@ $(function () {
         //Globals.Loading(true);
         DataService.GetData(GETBDCODEURL.format($(this).val()), true, "GET", "", function (data) {
             //Globals.Loading(false);
-            var template = " <li val=\"{0}\" exch=\"{1}\"><span class=\"trdcode\">{2}</span><span class=\"secusht\">{3}</span><span class=\"icon-arrow-right3\"></span></li>";
-            $(".resultlist ul").html("");
-            $.each(data, function (i, obj) {
-                $(".resultlist ul").append(template.format(obj.BD_CODE.toLowerCase(), obj.TYP_CODEI, obj.TRD_CODE, obj.SECU_SHT));
-            });
-
-            $(".resultlist ul li").bind("click", function () {
-
-                location.href = "{0}?c={1}&cid={2}&ids={3}&ql={4}&fid={5}&istophide={6}".format(CURRENTFILE, $(this).attr("val"), PARAM_CID, "", PARAM_QL, PARAM_FID, PARAM_HIDETOPBAR);//PARAM_IDS
-            });
-
+            if (data.hasOwnProperty("error")) {
+                $("body").append(data.error);
+            } else {
+                var template = " <li val=\"{0}\" exch=\"{1}\"><span class=\"trdcode\">{2}</span><span class=\"secusht\">{3}</span><span class=\"icon-arrow-right3\"></span></li>";
+                $(".resultlist ul").html("");
+                $.each(data, function (i, obj) {
+                    $(".resultlist ul").append(template.format(obj.BD_CODE.toLowerCase(), obj.TYP_CODEI, obj.TRD_CODE, obj.SECU_SHT));
+                });
+                $(".resultlist ul li").bind("click", function () {
+                    location.href = "{0}?c={1}&cid={2}&ids={3}&ql={4}&fid={5}&istophide={6}".format(CURRENTFILE, $(this).attr("val"), PARAM_CID, "", PARAM_QL, PARAM_FID, PARAM_HIDETOPBAR);//PARAM_IDS
+                });
+            }
         }, "jsonp");
 
     });
@@ -181,8 +182,90 @@ $(function () {
      }
      });
      });*/
+}
+
+//中信建投app获取地址列表
+function setRequestHostUrls(hostUrls) {
+    localStorage.setItem("hostUrls", JSON.stringify(hostUrls));
+    urlEach(hostUrls);
+}
+//重定义地址
+function urlEach(hostUrls) {
+    if (hostUrls == null && typeof(Storage) !== "undefined") {
+        hostUrls = JSON.parse(localStorage.getItem("hostUrls"));
+    }
+    if (hostUrls != null && hostUrls != "" && hostUrls != undefined && hostUrls.indexOf(",") > -1) {
+        var urls = hostUrls.split(",");
+        var index = 0;
+        for (var i = 0; i < urls.length; i++) {
+            if (urls[i].indexOf(BASEHOST) > -1 && x < urls.length) {
+                index = i + 1;
+            }
+        }
+        if (urls[index].indexOf("?") > -1) {
+            var urltext = urls[index].split("?");
+            if (urltext != null) {
+                BASEHOST = urltext[0];
+                if (urltext[1] != null && urltext[1] != "") {
+                    //Android/iOS客户端类型判断
+                    if (appType == "android") {
+                        KDS_Native.setDefaultHostUrl("KDS_STOCK_DETAILS_F10_HOST", BASEHOST);
+                    } else if (appType == "ios") {
+                        location.href = "KDS_Native://setDefaultHostUrl:KDS_STOCK_DETAILS_F10_HOST:" + BASEHOST;
+                    }
+                }
+            }
+        }
+
+    }
+}
+/**
+ * 中信建投app传参数
+ * @param appVer    客户端版本号 ( 用于后期版本客户端接口升级, Web判断做兼容提示等 )
+ * @param appType   客户端类型 ( Web用于判断是调用App Android/iOS 哪端的方法 )
+ * @param phoneNum  手机号
+ * @param deviceId  Android设备号 或 iOS UUID
+ * @param paramJson 扩展参数JSON格式(资金账号fundid )
+ */
+function callBackUserData(appVer, appType, phoneNum, deviceID, paramsJson) {
+	    alert(paramsJson);
+
+    params = {"appVer": appVer, "appType": appType, "phoneNum": phoneNum, "deviceID": deviceID};
+    if (paramsJson != null) {
+        PARAM_C = paramsJson.c;
+        PARAM_CID = paramsJson.cid;
+        PARAM_FID = paramsJson.fid;
+        PARAM_HIDETOPBAR = paramsJson.istophide;
+        utilitiesOnload();
+        defaultOnload();
+    }
+}
+/**
+ * JS调用打开在二级页面加载第三方Web页面, 并传递用户数据:
+ * @param loadUrl            要加载的第三方Web页面( F10资讯详情的接口地址 );
+ * @param userDataJson    需要转发的用户信息JSON数据
+ * ({"custid":"客户代码","fundid":"资金账号","userrole":"用户角色","orgid":"操作机构","ticket":"ticket票据", "shareUrl":"分享地址", "newsType":"新闻类型(附件的type)"})
+ */
+function openThirdPartyWebInSubPage(loadUrl, shareUrl, newsType) {
+    var userDataJson = {"shareUrl": shareUrl};
+    if(newsType!=null&&newsType!=undefined){
+        userDataJson["newsType"]= newsType;
+    }
+    //Android/iOS客户端类型判断
+    if (params.appType == "android") {
+     KDS_Native.openThirdPartyWebInSubPage("0", "KDS_F10_NEWS_DETAILS", loadUrl, userDataJson);
+     } else if (params.appType == "ios") {
+     location.href = "KDS_Native://openThirdPartyWebInSubPage:0:KDS_F10_NEWS_DETAILS:" + loadUrl + ":" + userDataJson;
+     // 或 loadURL("KDS_Native://openThirdPartyWebInSubPage:" + isCloseCurrent + ":" + functionCode + ":" + loadUrl + ":" + userDataJson);
+     }
+}
 
 
+$(function () {
+    if (PARAM_C != null && PARAM_C != undefined && (PARAM_IDS == null||PARAM_IDS=="")) {
+        utilitiesOnload();
+        defaultOnload();
+    }
 });
 
 var Globals = new function () {
@@ -289,15 +372,26 @@ var Globals = new function () {
                 }
                 $(".module .titletable").parent().parent().show();
 
-                var first = $(".module .titletable tr td span:eq(0)").attr("val").split(",");
-                for (m in first) {
-                    $(".module .category[val='" + first[m] + "']").parent().show();
+                var currentSecondMenu = $.cookie('currentSecondMenu');
+                if (currentSecondMenu) {
+                    var secondMenu = currentSecondMenu.split(",");
+                    for (m in secondMenu) {
+                        $(".module .category[val='" + secondMenu[m] + "']").parent().show();
+                    }
+                    $(".module .titletable tr td span[val='" + secondMenu + "']").addClass("titletable reclick");
+                    financial_zxjt(currentSecondMenu);
+                } else {
+                    var first = $(".module .titletable tr td span:eq(0)").attr("val").split(",");
+                    for (m in first) {
+                        $(".module .category[val='" + first[m] + "']").parent().show();
+                    }
+                    $(".module .titletable tr td span:eq(0)").addClass("titletable reclick");
                 }
-                $(".module .titletable tr td span:eq(0)").addClass("titletable reclick");
             }
         });
         $(".module .titletable tr td span").each(function (i, obj) {
             $(obj).bind("click", function () {
+                $.cookie('currentSecondMenu', $(obj).attr("val"));
                 $(".reclick").removeClass("titletable reclick");
                 $(obj).addClass("titletable reclick");
                 var type = [];
@@ -315,40 +409,11 @@ var Globals = new function () {
                     $(".module .category[val='" + val[x] + "']").parent().show();
                 }
                 $(".module .titletable").parent().parent().show();
-
-                //财务数据-下方按钮
-                if (val.indexOf("902") != -1) {
-                    $(".tableshift").eq(0).find("a").each(function (i, obj) {
-                        $(".bottomfooter ul li:eq(" + i + ")").html($(obj).text());
-                        if ($(obj).hasClass("red")) {
-                            $(".bottomfooter ul li:eq(" + i + ")").addClass("active");
-                        }
-                    });
-                    //营业收入图隐藏
-                    $(".module .category[val='902']").parent().find(".gchart").hide();
-                    $(".module .category[val='902']").parent().find(".datebar").hide();
-                    //bottomarea页尾遮掩问题
-                    $(window).bind("scroll", function () {
-                        var bottomfooter = $(".bottomfooter");
-                        if (bottomfooter.length > 0) {
-                            var bottom = $(".bottomfooter").offset().top;
-                            var marea = $("#bottomarea").offset().top;
-                            if ((marea - bottom) < 50) {
-                                $("#bottomarea").css("padding-bottom", "40px");
-                            } else {
-                                $("#bottomarea").css("padding-bottom", "5px");
-                            }
-                        }
-                    });
-                    $(".tableshift a").hide();
-                    $(".bottomfooter").show();
-                } else {
-                    $(".bottomfooter").remove();
-                }
+                financial_zxjt(val);
             });
         });
 
-        //财务数据
+        //财务数据-年报/三季报/中报/一季报 按钮
         $(".bottomfooter ul li").bind("click", function () {
             $(".active").removeClass("active");
             $(this).addClass("active");
@@ -356,36 +421,148 @@ var Globals = new function () {
             $(".tableshift").each(function (i, o) {
                 var a = $(o).find("a");
                 $(a.get(index)).click();
-
             });
         });
 
+        $("#quicklaunch a").bind("click", function () {
+            var category = $(".category[val={0}]".format($(this).attr("val")));
+            $("html,body").animate({scrollTop: category.offset().top - 70}, 600, function () {
+                var current = category.css("background-color");
+                category.parent().animate({backgroundColor: "#e8e8e8"}, 100).animate({backgroundColor: current}, 1000);
+            });
+        });
+
+
+        $(".showorhide").bind("click", function () {
+            var writing = $(this).attr("type");
+            if (writing == "hide") {
+                $(this).attr("type", "show");
+                $(this).find("i:eq(0)").hide();
+                $(this).find("i:eq(1)").show();
+            } else {
+                $(this).attr("type", "hide");
+                $(this).find("i:eq(0)").show();
+                $(this).find("i:eq(1)").hide();
+                $("#izl_rmenu .btn-top").click();
+            }
+            var comtable = $(this).parent().prev();
+            comtable.each(function () {
+                $(this).find(".signhide").toggleClass("hide");
+            });
+        });
+
+        $(".more").bind("click", function () {
+            var moreClick = $(this);
+            if (moreClick.parent().index() == 0) {//收起
+                moreClick.addClass("hide");
+                moreClick.parent().next().find(".more").removeClass("hide");
+                moreClick.parents(".morefooter").siblings().find("li").each(function (i, obj) {
+                    if (i > 9) {
+                        if (!$(obj).hasClass("hide"))
+                            $(obj).addClass("hide");
+                    }
+                });
+                moreClick.parents(".morefooter").find(".morebg").css({"width": "100%", "float": ""})
+                moreClick.parent().next().css({"text-align": "center"})
+            } else if (moreClick.parent().index() == 1) {
+                moreClick.parent().prev().find(".more").removeClass("hide");
+                var more = moreClick.parents(".morefooter").siblings().find(".hide");
+                more.each(function (i, obj) {
+                    if (i < 11) {
+                        $(obj).removeClass("hide");
+                        if (i == more.length - 1) {
+                            moreClick.addClass("hide");
+                        }
+                    }
+                });
+                moreClick.parent().css({"text-align": "right"});
+                moreClick.parents(".morefooter").find(".morebg").css({"width": "50%", "float": "left"})
+            }
+        });
+
+        $(".eventstitle").bind("click", function () {
+            $(this).parent().parent().next().show();
+            $(".eventsitem").hide();
+            $("html,body").animate({scrollTop: $(this).parent().parent().parent().offset().top - 80}, 10);
+        });
+
+        $("#newpage .close").bind("click", function () {
+            $("#newpage h1").html("");
+            $("#newpage .time").html("");
+            $("#newpage .article").html("");
+            $("#newpage").siblings().show();
+            $(this).parent().hide();
+            Globals.Loading(false);
+        });
+
+        //判断是否中信建投，隐藏部分数据
+        if (PARAM_CID == -3 && PARAM_FID == FUNCTION_F10) {
+            $(".module .category[val='901']").next().find("div:first").hide();
+            $(".module .category[val='901']").next().find("div:eq(2)").hide();
+            $(".module .category[val='43']").next().find("div:first").hide();
+            $(".module .category[val='43']").hide();
+            $("#top").hide();
+        }
+
+        //财务数据-年报/三季报/中报/一季报 按钮展示与隐藏
+        function financial_zxjt(val) {
+            if (val.indexOf("902") != -1) {
+                $(".tableshift").eq(0).find("a").each(function (i, obj) {
+                    $(".bottomfooter ul li:eq(" + i + ")").html($(obj).text());
+                    if ($(obj).hasClass("red")) {
+                        $(".bottomfooter ul li:eq(" + i + ")").addClass("active");
+                    }
+                });
+                //营业收入图隐藏
+                $(".module .category[val='902']").parent().find(".gchart").hide();
+                $(".module .category[val='902']").parent().find(".datebar").hide();
+                //bottomarea页尾遮掩问题
+                $(window).bind("scroll", function () {
+                    var bottomfooter = $(".bottomfooter");
+                    if (bottomfooter.length > 0) {
+                        var bottom = $(".bottomfooter").offset().top;
+                        var marea = $("#bottomarea").offset().top;
+                        if ((marea - bottom) < 50) {
+                            $("#bottomarea").css("padding-bottom", "40px");
+                        } else {
+                            $("#bottomarea").css("padding-bottom", "5px");
+                        }
+                    }
+                });
+                $(".tableshift a").hide();
+                $(".bottomfooter").show();
+            } else {
+                $(".bottomfooter").hide();
+            }
+        }
     };
 
     this.TryBuildChart = function () {
         var chartobjs = $(".gchart");
         chartobjs.each(function (i, obj) {
             var charttype = $(obj).attr("charttype").toLowerCase();
-            var chartdata = $(obj).attr("chartdata").toString().replaceAll("url(/php/images.php?","url({0}/php/images.php?".format(BASEHOST));
+            var chartdata = $(obj).attr("chartdata");//.replaceAll("url(/php/images.php?","url({0}/php/images.php?".format(BASEHOST));
             var charttitle = $(obj).attr("charttitle");
             var data = eval("(" + chartdata + ")");
             if (charttitle && charttitle != "") {
                 $(obj).before("<div class='charttitle'>{0}</div>".format(charttitle));
             }
             if (charttype == "pie") {
-                var pielist = [];
-                var size = '70%';
+                var pielist = [], title = '';
+                var size = '100%';
                 var innerSize = '0%';
+                var colors = ["#FC9F18", "#FC5E19", "#15CF1A", "#18B219"];
                 if ($(obj).attr("colorstyle") == "mnyStyle") {
-                    size = '80%';
-                    innerSize = '40%';
+                    size = '70%';
+                    innerSize = '55%';
+                    title = '今日资金';
                     for (var m = 0; m < data.length; m++) {
                         if (data[m][0] == '散户流入') {
                             var myObj =
                             {
                                 'name': data[m][0],
                                 'y': data[m][1],
-                                'color': "#FE8260"
+                                'color': "#FF9D00"
                             };
                             pielist.push(myObj);
                         } else if (data[m][0] == '主力流入') {
@@ -393,7 +570,7 @@ var Globals = new function () {
                             {
                                 'name': data[m][0],
                                 'y': data[m][1],
-                                'color': "#E44122"
+                                'color': "#FF5900"
                             };
                             pielist.push(myObj);
                         } else if (data[m][0] == '散户流出') {
@@ -401,7 +578,7 @@ var Globals = new function () {
                             {
                                 'name': data[m][0],
                                 'y': data[m][1],
-                                'color': "#64D39A"
+                                'color': "#20CC26"
                             };
                             pielist.push(myObj);
                         } else if (data[m][0] == '主力流出') {
@@ -409,7 +586,7 @@ var Globals = new function () {
                             {
                                 'name': data[m][0],
                                 'y': data[m][1],
-                                'color': "#00A14E"
+                                'color': "#0DB14B"
                             };
                             pielist.push(myObj);
                         }
@@ -426,7 +603,9 @@ var Globals = new function () {
                         backgroundColor: 'rgba(0,0,0,0)'
                     },
                     title: {
-                        text: ''
+                        floating: true,
+                        fontWeight: 'bold',
+                        text: title,
                     },
                     tooltip: {
                         enabled: false
@@ -440,10 +619,11 @@ var Globals = new function () {
                             dataLabels: {
                                 enabled: true,
                                 //format: '{point.name}: {point.percentage:.2f}%'
-                                format: '{point.percentage:.2f}%'
-
+                                //format: '{point.percentage:.2f}%<br>{point.name}',
+                                //useHTML: true,
+                                format: '<span style="color: {point.color};font-size: 18px;">{point.percentage:.2f}%</span><br>{point.name}',
                             },
-                            showInLegend: true,
+                            //showInLegend: true,  //图例
                             animation: false,
                             point: {
                                 events: {
@@ -459,12 +639,20 @@ var Globals = new function () {
                         //data: eval(chartdata)
                         data: pielist
                     }]
+                }, function (c) {
+                    // 环形图圆心
+                    var centerY = c.series[0].center[1],
+                        titleHeight = parseInt(c.title.styles.fontSize);
+                    c.setTitle({
+                        y: centerY + titleHeight / 2
+                    });
+                    chart = c;
                 });
             }
             else if (charttype == "column") {
                 var color1 = "#4b88d5";
                 var color2 = "#feb847";
-                var format = '{point.y:.2f}';
+                var format = '<span style="color: {point.color}">{point.y:.2f}</span>';
                 var fontSize = '14px';
                 var width = 40;
                 if ($(window).width() > 768) {
@@ -472,8 +660,8 @@ var Globals = new function () {
                 }
                 var categories = data.categories;
                 if ($(obj).attr("colorstyle") == "1") {
-                    color1 = "#E9471F";
-                    color2 = "#09AB40";
+                    color1 = "#FF5900";
+                    color2 = "#0DB14B";
                 }
                 if ($(obj).attr("colorstyle") == "format0") {
                     format = '{point.y}';
@@ -486,7 +674,7 @@ var Globals = new function () {
                 //var flowout = 0;
                 var flow = 0;
                 if ($(obj).attr("colorstyle") == "2") {
-                    format = '{point.y}';
+                    format = '<span style="color: {point.color}">{point.y}</span>';
                     for (var m = 0; m < data.categories.length; m++) {
                         //买入、增持、中性、减持、卖出
                         if (data.categories[m] == "买入") {
@@ -655,6 +843,7 @@ var Globals = new function () {
                                 //rotation: -90,
                                 //color: '#FFFFFF',
                                 align: 'center',
+                                useHTML: true,
                                 //format: '{point.y:.2f}', // one decimal
                                 format: format, // one decimal
                                 //y: 10, // 10 pixels down from the top
@@ -692,7 +881,6 @@ var Globals = new function () {
                 var datas = data.datas;
                 var barname = [];
                 var barvalue = [];
-                var yAxisname = data.unit;
                 if ($(obj).attr("colorstyle") == "1") {
                     var first = datas.splice(0, 1);
                     var datacut = datas.splice(0, 9);
@@ -706,7 +894,7 @@ var Globals = new function () {
                     barname.push(first[0].name);
                     barvalue.push({
                         y: first[0].value,
-                        color: '#ff5a00'
+                        color: '#FF5900'
                     });
                     for (var m = 0; m < dataOrder.length; m++) {
                         barname.push(dataOrder[m].name);
@@ -726,25 +914,25 @@ var Globals = new function () {
                     barname.push(first[0].name);
                     barvalue.push({
                         y: first[0].value,
-                        color: '#ff5a00'
+                        color: '#FF5900'
+                    });
+                    barname.push(last[0].name);
+                    barvalue.push({
+                        y: last[0].value,
+                        color: '#4A98FF'
                     });
                     for (var m = 0; m < dataOrder.length; m++) {
                         barname.push(dataOrder[m].name);
                         barvalue.push(dataOrder[m].value);
                     }
-                    barname.push(last[0].name);
-                    barvalue.push({
-                        y: last[0].value,
-                        color: '#8dd0e4'
-                    });
+
                 }
                 $(obj).highcharts({
                     chart: {
-                        marginTop: 25,
                         marginLeft: 40,
                         backgroundColor: 'rgba(0,0,0,0)'
                     },
-                    colors: ['#0083d6'],
+                    colors: ['#FFD665'],
                     title: {
                         text: '',
                     },
@@ -768,12 +956,7 @@ var Globals = new function () {
                         gridLineWidth: 0,
                         lineWidth: 1,
                         title: {
-                            text: '单位：' + yAxisname,
-                            align: 'high',
-                            offset: 0,
-                            rotation: 0,
-                            y: -10,
-                            x: 25
+                            text: '',
                         },
                         labels: {
                             x: -5,
@@ -786,14 +969,14 @@ var Globals = new function () {
                     }]
                 });
             } else if (charttype == "column2") {
-                var color1 = ['#187abd', '#8dd0e4', '#4299B1', '#b4b4b6'];
-                var color2 = ['#d63a4c', '#FBC491', '#8CA652', '#6E588F'];
+                var color1 = ['#FF5900', '#4A98FF', '#FFA000', '#92D0FF'];
+                var color2 = ['#FFBB00', '#92D0FF', '#FF3D00', '#4A98FF'];
                 var categories = data.categories;
                 var lbdata = data.datas;
                 var xAxisdata = [], series = [], yAxis = [];
-                var xAxis={},marginBottom=60;
+                var xAxis = {}, marginBottom = 60;
                 if ($(obj).attr("colorstyle") == "1") {
-                    marginBottom=(Math.floor(categories.length*2/3)+1)*20+40;
+                    marginBottom = (Math.floor(categories.length * 2 / 3) + 1) * 20 + 40;
                     for (var i = 0; i < lbdata.length; i++) {
                         if (xAxisdata.indexOf(lbdata[i].label) == -1) {
                             xAxisdata.push(lbdata[i].label);
@@ -832,7 +1015,7 @@ var Globals = new function () {
                             color: color2[m % 4],
                             type: 'line',
                             marker: {
-                                symbol: 'diamond'
+                                symbol: 'circle'
                             },
                             yAxis: 1,
                             data: values2
@@ -872,11 +1055,11 @@ var Globals = new function () {
                         },
                         opposite: true
                     }];
-                    xAxis={
+                    xAxis = {
                         categories: xAxisdata
                     };
                 } else if ($(obj).attr("colorstyle") == "2") {
-                    marginBottom=(Math.floor(categories.length/3)+1)*20+40;
+                    marginBottom = (Math.floor(categories.length / 3) + 1) * 20 + 40;
                     for (var i = 0; i < lbdata.length; i++) {
                         if (xAxisdata.indexOf(lbdata[i].label) == -1) {
                             xAxisdata.push(lbdata[i].label);
@@ -908,7 +1091,11 @@ var Globals = new function () {
                             color: color2[m % 4],
                             type: 'line',
                             marker: {
-                                symbol: 'diamond'
+                                symbol: 'circle'
+                            },
+                            dataLabels: {
+                                enabled: true,
+                                color: color2[m % 4]
                             },
                             data: values
                         });
@@ -929,18 +1116,22 @@ var Globals = new function () {
                             format: '{value}',
                         }
                     }];
-                    xAxis={
+                    xAxis = {
                         categories: xAxisdata
                     };
                 } else if ($(obj).attr("colorstyle") == "3") {
-                    xAxisdata=categories;
-                    lbdata=lbdata.slice(0,500);//插件根据页面宽度最多显示数据
+                    xAxisdata = categories;
+                    //lbdata=lbdata.slice(0,500);//插件根据页面宽度最多显示数据
                     series.push({
-                        name:'市盈率',
+                        name: '市盈率',
                         color: color2[0],
                         type: 'line',
                         marker: {
-                            symbol: 'diamond'
+                            symbol: 'circle'
+                        },
+                        dataLabels: {
+                            enabled: true,
+                            color: color2[0]
                         },
                         data: lbdata
                     });
@@ -955,7 +1146,7 @@ var Globals = new function () {
                             format: '{value}',
                         }
                     }];
-                    xAxis={
+                    xAxis = {
                         categories: xAxisdata,
                         labels: {
                             enabled: true,
@@ -982,7 +1173,7 @@ var Globals = new function () {
             } else if (charttype == "line") {
                 var step = parseInt(data.categories.length / 4);
                 var enabled = "";
-                var series = [], yAxis = {}, colors = [];
+                var series = [], yAxis = {}, colors = [], marginRight = 5, marginLeft = 25;
                 if ($(obj).attr("colorstyle") == "grade") {
                     enabled = data.datas[0].name;
                     if (data.datas[0].name) {
@@ -1001,7 +1192,10 @@ var Globals = new function () {
                     };
                     colors = ['#012257'];
                 } else if ($(obj).attr("colorstyle") == "difference") {
-                    series.push({data: data.datas, "marker": {"symbol": 'diamond'}});
+                    marginRight = 35;
+                    marginLeft = 35;
+                    step = parseInt(data.categories.length / 2 - 1);
+                    series.push({data: data.datas, "marker": {"symbol": 'circle'}});
                     yAxis = [{
                         gridLineWidth: 0,
                         lineWidth: 1,
@@ -1011,7 +1205,7 @@ var Globals = new function () {
                             offset: 0,
                             rotation: 0,
                             y: -10,
-                            x: 25
+                            x: 35
                         },
                         labels: {
                             x: -5,
@@ -1025,7 +1219,8 @@ var Globals = new function () {
                         type: 'spline',
                         animation: false,
                         marginTop: 25,
-                        marginLeft: 40,
+                        marginLeft: marginLeft,
+                        marginRight: marginRight,
                         backgroundColor: 'rgba(0,0,0,0)'
                     },
                     title: {
@@ -1037,7 +1232,8 @@ var Globals = new function () {
                             enabled: true,
                             staggerLines: 1,
                             step: step
-                        }
+                        },
+                        tickWidth: 0
                     },
                     yAxis: yAxis,
                     tooltip: {
@@ -1362,18 +1558,13 @@ String.prototype.substr2 = function (length) {
     return result;
 }
 
-
-String.prototype.replaceAll = function(reallyDo, replaceWith) {
-	var result = this;
-	var i = 1;
-
-	if(replaceWith.indexOf(reallyDo) != -1) return result;
-
-	while(result.indexOf(reallyDo) >= 0 && i < 10000)
-	{
-		result = result.replace(reallyDo, replaceWith);
-		i++;
-	}
-
-	return result;
-}  
+String.prototype.replaceAll = function (reallyDo, replaceWith) {
+    var result = this;
+    var i = 1;
+    if (replaceWith.indexOf(reallyDo) != -1) return result;
+    while (result.indexOf(reallyDo) >= 0 && i < 10000) {
+        result = result.replace(reallyDo, replaceWith);
+        i++;
+    }
+    return result;
+}

@@ -197,9 +197,9 @@ public class XAxisRendererHorizontalBarChart extends XAxisRenderer {
                     mViewPortHandler.contentBottom(), mAxisLinePaint);
         }
 
-        if ((mXAxis.getPosition() == XAxis.XAxisPosition.BOTTOM)
-                || (mXAxis.getPosition() == XAxis.XAxisPosition.BOTTOM_INSIDE)
-                || (mXAxis.getPosition() == XAxis.XAxisPosition.BOTH_SIDED)) {
+        if (mXAxis.getPosition() == XAxis.XAxisPosition.BOTTOM
+                || mXAxis.getPosition() == XAxis.XAxisPosition.BOTTOM_INSIDE
+                || mXAxis.getPosition() == XAxis.XAxisPosition.BOTH_SIDED) {
             c.drawLine(mViewPortHandler.contentLeft(),
                     mViewPortHandler.contentTop(), mViewPortHandler.contentLeft(),
                     mViewPortHandler.contentBottom(), mAxisLinePaint);

@@ -16,7 +16,6 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 
 import com.bigdata.mylibrary.chart.animation.ChartAnimator;
-import com.bigdata.mylibrary.chart.charts.LineChart;
 import com.bigdata.mylibrary.chart.charts.PieChart;
 import com.bigdata.mylibrary.chart.data.Entry;
 import com.bigdata.mylibrary.chart.data.PieData;
