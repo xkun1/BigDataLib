@@ -4,15 +4,20 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 
 import com.bigdata.mylibrary.Library;
+import com.bigdata.mylibrary.net.ssl.PersistentCookieStore;
 import com.bigdata.mylibrary.util.LogUtils;
 import com.google.gson.Gson;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
 
+import okhttp3.Cookie;
+import okhttp3.CookieJar;
+import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -77,6 +82,7 @@ public class RetroFactory {
         builder.retryOnConnectionFailure(true);
         builder.connectTimeout(5, TimeUnit.SECONDS);
         builder.readTimeout(10, TimeUnit.SECONDS);
+        builder.cookieJar(new CookiesManager());
         okHttpClient = builder.build();
         mRetrofit = buildRetrofit();
     }
@@ -89,6 +95,29 @@ public class RetroFactory {
                 .client(okHttpClient)
                 .baseUrl(baseUrl)
                 .build();
+    }
+
+    /**
+     * Cookie持久化与自动化管理
+     */
+    private class CookiesManager implements CookieJar {
+        private final PersistentCookieStore cookieStore =
+                new PersistentCookieStore(appContext);
+
+        @Override
+        public void saveFromResponse(HttpUrl url, List<Cookie> cookies) {
+            if (cookies != null && cookies.size() > 0) {
+                for (Cookie item : cookies) {
+                    cookieStore.add(url, item);
+                }
+            }
+        }
+
+        @Override
+        public List<Cookie> loadForRequest(HttpUrl url) {
+            List<Cookie> cookies = cookieStore.get(url);
+            return cookies;
+        }
     }
 
 }

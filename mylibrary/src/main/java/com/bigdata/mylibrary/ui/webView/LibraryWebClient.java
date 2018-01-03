@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.net.http.SslError;
 import android.webkit.ClientCertRequest;
 import android.webkit.SslErrorHandler;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -59,19 +60,7 @@ public class LibraryWebClient extends WebViewClient {
         super.onReceivedClientCertRequest(view, request);
     }
 
-
-
-    public boolean shouldOverrideUrlLoading(final WebView view, final String url) {
-
-        view.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                view.loadUrl(url);
-            }
-        }, 500);
-        return true;
-    }
-
+    @Override
     public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
         handler.proceed();//接受证书
     }
@@ -91,5 +80,11 @@ public class LibraryWebClient extends WebViewClient {
         super.onPageStarted(view, url, favicon);
 //        mProgressDialog.show();
         materialDialog.show();
+    }
+
+    @Override
+    public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+        view.loadUrl(view.getUrl());
+        return true;
     }
 }

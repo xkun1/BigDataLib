@@ -1,7 +1,6 @@
 package com.bigdata.mylibrary.ui.webView;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -21,7 +20,6 @@ import android.widget.EditText;
 public class LibraryWebChrome extends WebChromeClient {
 
     private String webTitle;
-    private Context mContext;
 
     public String getWebTitle() {
         return webTitle;
@@ -66,6 +64,7 @@ public class LibraryWebChrome extends WebChromeClient {
         return true;
     }
 
+    @Override
     public boolean onJsBeforeUnload(WebView view, String url,
                                     String message, JsResult result) {
         return super.onJsBeforeUnload(view, url, message, result);
@@ -151,4 +150,5 @@ public class LibraryWebChrome extends WebChromeClient {
         dialog.show();
         return true;
     }
+
 }
