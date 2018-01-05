@@ -1,8 +1,11 @@
 package com.bigdata.bigdatalib;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +13,10 @@ import android.widget.ListView;
 
 import com.bigdata.bigdatalib.kotlin.BaseActivity;
 import com.bigdata.mylibrary.adapter.BaseAdapter;
+import com.bigdata.mylibrary.chart.charts.LineChart;
+import com.bigdata.mylibrary.chart.components.Description;
+import com.bigdata.mylibrary.chart.data.LineData;
+import com.bigdata.mylibrary.chartUtils.LineChartUtils;
 import com.bigdata.mylibrary.ui.view.BaseLibSwipeRefreshLayout;
 
 import java.util.ArrayList;
@@ -34,6 +41,7 @@ public class ListViewActivity extends BaseActivity {
 //    private RecyclerView recyclerView;
 //    private BaseRecyclerViewAdapter<Integer> adapterRecycler;
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @SuppressLint("InflateParams")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -65,6 +73,24 @@ public class ListViewActivity extends BaseActivity {
 //                adapterRecycler.notifyDataSetChanged();
             }
         });
+
+        LineChart mLineChart = null;
+        Description description = mLineChart.getDescription();
+        description.setText("你好");
+        new LineChartUtils.LineChartBuider(mLineChart)
+                .mBorderColor(Color.BLACK)
+                .mBorderWidth(1)
+                .mDescription(description)
+                .mDoubleTapToZoomEnabled(false)
+                .noDataText("没有数据")
+                .mDrawGridBackground(false)
+                .mDragEnabled(true)
+                .mScaleXEnabled(false)
+                .mScaleYEnabled(false)
+                .mDrawBorders(false)
+                .mTouchEnabled(false)
+                .mLineData(new LineData())
+                .init();
 
 
     }

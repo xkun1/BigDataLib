@@ -10,6 +10,7 @@ import com.facebook.stetho.Stetho;
  * Date:2017/5/19 or 上午11:25
  * email:hekun@gamil.com
  * Desc:
+ * @author kun
  */
 
 public class app extends Application {
