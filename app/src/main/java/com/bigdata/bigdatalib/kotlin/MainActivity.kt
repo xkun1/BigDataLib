@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import com.bigdata.bigdatalib.ChartDemo
 import com.bigdata.bigdatalib.ListViewActivity
 import com.bigdata.bigdatalib.R
 import com.bigdata.bigdatalib.dialog.OrCodeDigFragment
@@ -39,7 +40,7 @@ class MainActivity : BaseActivity() {
         }
         findViewById(R.id.button_setOrCode).setOnClickListener { orCodeDigFragment!!.show(fragmentManager, "") }
         findViewById(R.id.ListView).setOnClickListener { ActivityUtils.startActivity(this@MainActivity, LinkManActivity::class.java) }
-        findViewById(R.id.button_chart).setOnClickListener { ActivityUtils.startActivity(this@MainActivity, ChartActivity::class.java) }
+        findViewById(R.id.button_chart).setOnClickListener { ActivityUtils.startActivity(this@MainActivity, ChartDemo::class.java) }
         findViewById(R.id.button_listview).setOnClickListener { ActivityUtils.startActivity(this@MainActivity, ListViewActivity::class.java) }
         ;
         findViewById(R.id.button_popWindow).setOnClickListener {

@@ -41,9 +41,11 @@
         <activity
             android:name=".kotlin.DemoKotiln"
             android:label="@string/title_activity_demo_kotiln"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".ChartDemo"
+            android:label="@string/title_activity_demo_kotiln"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".ListViewActivity"
             android:parentActivityName=".kotlin.MainActivity"
