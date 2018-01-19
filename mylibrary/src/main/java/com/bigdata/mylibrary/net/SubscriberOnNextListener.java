@@ -10,4 +10,5 @@ package com.bigdata.mylibrary.net;
 
 public interface SubscriberOnNextListener<T> {
     void onNext(T t);
+    void onError();
 }

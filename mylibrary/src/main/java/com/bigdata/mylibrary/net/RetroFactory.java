@@ -65,7 +65,6 @@ public class RetroFactory {
     }
 
     private void createNetworkConfig() {
-
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.addInterceptor(new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
             @Override

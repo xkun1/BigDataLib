@@ -59,7 +59,6 @@ public class ResultSubScriber<T> implements Observer<T>, ProgressCancelListener 
                 nextListener.onNext(t);
             }
         }
-
     }
 
 
@@ -68,6 +67,7 @@ public class ResultSubScriber<T> implements Observer<T>, ProgressCancelListener 
         LogUtils.d("onError==" + e.toString());
 
         dismissProgressDialog();
+        nextListener.onError();
         ToastUtils.showLong("网络异常，请稍后再试");
     }
 

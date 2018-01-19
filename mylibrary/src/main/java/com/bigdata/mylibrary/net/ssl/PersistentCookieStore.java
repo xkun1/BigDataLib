@@ -20,9 +20,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import okhttp3.Cookie;
 import okhttp3.HttpUrl;
 
-/**
- * Created by s_ven on 16/4/21.
- */
+
 public class PersistentCookieStore {
     private static final String LOG_TAG = "PersistentCookieStore";
     private static final String COOKIE_PREFS = "Cookies_Prefs";

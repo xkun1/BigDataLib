@@ -40,8 +40,13 @@ public class ChartDemo extends LibraryBaseActivity {
     BarChart mBarChart;
 
 
+
+
+
+
     @Override
     protected void init() {
+
         setContentView(R.layout.activity_chartdemo);
         mLineChart = (LineChart) findViewById(R.id.mLineChart);
         mBarChart = (BarChart) findViewById(R.id.mBarChart);
