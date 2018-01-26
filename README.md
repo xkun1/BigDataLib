@@ -11,7 +11,7 @@
 	
 	2.在你的Application中调用
 	Library.INSTANCE.init(this);
-	Library.INSTANCE.initBaseUrl("https://bbcj.chinabigdata.com/app/");
+	Library.INSTANCE.initBaseUrl("****************");
 	
 ![](https://github.com/xkun1/BigDataLib/blob/master/mylibrary/src/main/java/image/image03.png)
 	
