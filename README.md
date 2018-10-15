@@ -13,8 +13,6 @@
 	Library.INSTANCE.init(this);
 	Library.INSTANCE.initBaseUrl("****************");
 	
-![](https://github.com/xkun1/BigDataLib/blob/master/mylibrary/src/main/java/image/image03.png)
-	
 	init-》初始化类库
 	initBaseUrl-》为网络库添加域名地址
 	
